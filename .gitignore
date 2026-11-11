@@ -1,0 +1,9 @@
+# NeuroNiv Git Ignore
+node_modules/
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+Thumbs.db
+scratch/

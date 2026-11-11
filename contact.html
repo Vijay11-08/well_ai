@@ -311,28 +311,55 @@
                                     </div>
                                 </div>
 
-                                <!-- Business Email -->
-                                <div class="contact-field-group">
-                                    <label for="email" class="contact-label">BUSINESS EMAIL <span class="required-star">*</span></label>
-                                    <input type="email" class="contact-input" id="email" placeholder="john@company.com" required>
-                                    <div class="field-error">Please enter a valid email.</div>
+                                <!-- Business Email & Phone -->
+                                <div class="contact-row">
+                                    <div class="contact-field-group">
+                                        <label for="email" class="contact-label">BUSINESS EMAIL <span class="required-star">*</span></label>
+                                        <input type="email" class="contact-input" id="email" placeholder="john@company.com" required>
+                                        <div class="field-error">Please enter a valid email.</div>
+                                    </div>
+                                    <div class="contact-field-group">
+                                        <label for="phone" class="contact-label">PHONE NUMBER</label>
+                                        <input type="tel" class="contact-input" id="phone" placeholder="+1 (555) 000-0000">
+                                    </div>
                                 </div>
 
-                                <!-- What Do You Need -->
-                                <div class="contact-field-group">
-                                    <label for="projectType" class="contact-label">SERVICE CATEGORY</label>
-                                    <div class="contact-select-wrap">
-                                        <select class="contact-input contact-select" id="projectType">
-                                            <option value="AI & Automation">AI &amp; Automation</option>
-                                            <option value="Web Development">Web Development</option>
-                                            <option value="Data & Web Scraping">Data &amp; Web Scraping</option>
-                                            <option value="Cloud & DevOps">Cloud &amp; DevOps</option>
-                                            <option value="Mobile App Development">Mobile App Development</option>
-                                            <option value="Dedicated Team">Dedicated Team</option>
-                                            <option value="Other / Not sure yet">Other / Not sure yet</option>
-                                        </select>
-                                        <svg class="select-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                                <!-- Service Category & Project Budget -->
+                                <div class="contact-row">
+                                    <div class="contact-field-group">
+                                        <label for="projectType" class="contact-label">SERVICE CATEGORY</label>
+                                        <div class="contact-select-wrap">
+                                            <select class="contact-input contact-select" id="projectType">
+                                                <option value="AI & Machine Learning">AI &amp; Machine Learning</option>
+                                                <option value="Web Application Development">Web Application Development</option>
+                                                <option value="Intelligent Automation">Intelligent Automation</option>
+                                                <option value="Digital Marketing & Ads">Digital Marketing &amp; Ads</option>
+                                                <option value="Social Media Management">Social Media Management</option>
+                                                <option value="Cloud Architecture & DevOps">Cloud Architecture &amp; DevOps</option>
+                                                <option value="Dedicated Engineering Team">Dedicated Engineering Team</option>
+                                                <option value="Other / Technical Assessment">Other / Technical Assessment</option>
+                                            </select>
+                                            <svg class="select-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                                        </div>
                                     </div>
+                                    <div class="contact-field-group">
+                                        <label for="budget" class="contact-label">PROJECT BUDGET</label>
+                                        <div class="contact-select-wrap">
+                                            <select class="contact-input contact-select" id="budget">
+                                                <option value="Flexible / Exploring">Flexible / Exploring</option>
+                                                <option value="< $10,000">&lt; $10,000</option>
+                                                <option value="$10,000 - $25,000">$10,000 - $25,000</option>
+                                                <option value="$25,000 - $50,000">$25,000 - $50,000</option>
+                                                <option value="$50,000+">$50,000+</option>
+                                            </select>
+                                            <svg class="select-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Honeypot Anti-Spam Field (Hidden from real users) -->
+                                <div style="display:none !important;" aria-hidden="true">
+                                    <input type="text" name="website" id="websiteHoneypot" tabindex="-1" autocomplete="off">
                                 </div>
 
                                 <!-- Project Details -->
@@ -355,14 +382,87 @@
                             </div>
                         </form>
 
-                        <!-- Success Message -->
-                        <div id="formSuccess" class="d-none text-center py-5">
-                            <div class="mb-4">
-                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-5"></path></svg>
+                        <!-- 5-STAGE MESSAGE TRANSMISSION OVERLAY -->
+                        <div class="transmission-overlay" id="transmissionOverlay" aria-live="polite">
+                            <canvas class="transmission-canvas" id="transmissionCanvas"></canvas>
+
+                            <!-- Stage 1 & 2: Packaging Payload -->
+                            <div class="transmission-stage" id="stagePackage">
+                                <div class="packet-box">
+                                    <div class="packet-header">
+                                        <span class="packet-title">Secure Message Packet</span>
+                                        <span class="packet-status">
+                                            <span class="packet-status-dot"></span>
+                                            Packaging...
+                                        </span>
+                                    </div>
+                                    <div class="packet-meta-row">
+                                        <span>Sender:</span>
+                                        <span class="packet-meta-val" id="packetSender">Client</span>
+                                    </div>
+                                    <div class="packet-meta-row">
+                                        <span>Scope:</span>
+                                        <span class="packet-meta-val" id="packetService">General</span>
+                                    </div>
+                                    <div class="packet-meta-row">
+                                        <span>Timestamp:</span>
+                                        <span class="packet-meta-val" id="packetTime">--:--:--</span>
+                                    </div>
+                                    <div class="packet-meta-row">
+                                        <span>Encryption:</span>
+                                        <span class="packet-meta-val">TLS v1.3 Verified</span>
+                                    </div>
+                                </div>
+                                <div class="transmission-progress-wrap">
+                                    <div class="transmission-progress-bar" id="transmissionProgress"></div>
+                                </div>
+                                <p class="text-white-50 small mb-0">Constructing encrypted transmission payload...</p>
                             </div>
-                            <h3 class="fw-bold mb-2" style="color:#111827;">Message Sent!</h3>
-                            <p class="mb-4" style="color:#6b7280;">Thank you for reaching out. Our team will review your project details and get back to you within 24 hours.</p>
-                            <button type="button" class="btn btn-outline-dark rounded-pill px-4" onclick="resetForm()">Send Another Message</button>
+
+                            <!-- Stage 3: Transmission In Progress -->
+                            <div class="transmission-stage" id="stageTransmit">
+                                <div class="mb-4">
+                                    <div class="spinner-border text-info" role="status" style="width: 3rem; height: 3rem;">
+                                        <span class="visually-hidden">Transmitting...</span>
+                                    </div>
+                                </div>
+                                <h4 class="text-white fw-bold mb-2 fs-5">Transmitting Payload</h4>
+                                <p class="text-white-50 small mb-3">Routing inquiry through NeuroNiv secure network relay...</p>
+                                <div class="transmission-progress-wrap">
+                                    <div class="transmission-progress-bar" id="transmissionProgress2" style="width: 65%;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Stage 4 & 5: Message Received (Success State) -->
+                            <div class="transmission-stage" id="stageSuccess">
+                                <div class="success-checkmark-wrap">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12" class="success-check-path"></polyline>
+                                    </svg>
+                                </div>
+                                <h3 class="text-white fw-bold mb-2 fs-4">Message Received</h3>
+                                <p class="text-white-50 small mb-4" style="line-height: 1.6;">
+                                    Your project inquiry has been delivered successfully to our engineering team.<br>
+                                    We'll review your requirements and respond within 24 hours.
+                                </p>
+                                <button type="button" class="btn btn-outline-light rounded-pill px-4" id="sendAnotherBtn">Send Another Inquiry</button>
+                            </div>
+
+                            <!-- Error State: Transmission Failure -->
+                            <div class="transmission-stage" id="stageError">
+                                <div class="error-icon-wrap">
+                                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                    </svg>
+                                </div>
+                                <h3 class="text-white fw-bold mb-2 fs-4">We Couldn't Deliver Your Message</h3>
+                                <p class="text-white-50 small mb-4" id="packetErrorMsg" style="line-height: 1.6;">
+                                    Something went wrong while routing your inquiry. Please try again or reach out directly at <a href="mailto:info@neuroniv.com" class="text-info text-decoration-none">info@neuroniv.com</a>.
+                                </p>
+                                <button type="button" class="btn btn-primary-custom" id="packetRetryBtn">Try Again</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -371,11 +471,11 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="py-5 border-top" style="border-color: rgba(255,255,255,0.1) !important; background-color: var(--color-bg-base);">
+    <!-- Standardized Premium Footer -->
+    <footer class="py-5" style="background-color: var(--color-bg-base); border-top: 1px solid rgba(255,255,255,0.08);">
         <div class="container fade-up">
             <div class="row g-4">
-                <div class="col-md-4">
+                <div class="col-lg-4 mb-4 mb-lg-0">
                     <a href="index.html" aria-label="NeuroNiv Home" class="text-decoration-none d-flex align-items-center gap-2 mb-4">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#e879f9"/>
@@ -384,36 +484,53 @@
                         </svg>
                         <span class="text-white fw-bold fs-5" style="letter-spacing: -0.05em;">NeuroNiv</span>
                     </a>
-                    <p class="text-white-50 small pe-md-4">NeuroNiv is an AI-Native Product Engineering Studio. We help growing companies build scalable, production-ready software.</p>
+                    <p class="text-white-50 small pe-md-4 mb-4">
+                        NeuroNiv is a Technology &amp; Digital Growth Studio. We build AI solutions, web applications, and marketing systems for businesses ready to scale.
+                    </p>
+                    <p class="text-white-50 small mb-0">
+                        📍 Rajkot, Gujarat, India<br>
+                        <a href="mailto:info@neuroniv.com" class="footer-link">info@neuroniv.com</a>
+                    </p>
                 </div>
-                <div class="col-md-2 offset-md-2">
-                    <h5 class="text-white fs-6 mb-3">Company</h5>
-                    <ul class="list-unstyled d-flex flex-column gap-2">
-                        <li><a href="about.html" class="text-white-50 text-decoration-none">About Us</a></li>
-                        <li><a href="careers.html" class="text-white-50 text-decoration-none">Careers</a></li>
-                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                <div class="col-6 col-lg-2 offset-lg-1">
+                    <h5 class="text-white fs-6 mb-4 fw-bold">Company</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3">
+                        <li><a href="about.html" class="footer-link">About Us</a></li>
+                        <li><a href="services.html" class="footer-link">Services</a></li>
+                        <li><a href="careers.html" class="footer-link">Careers</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                        <li><a href="work.html" class="footer-link">Work</a></li>
                     </ul>
                 </div>
-                <div class="col-md-2">
-                    <h5 class="text-white fs-6 mb-3">Expertise</h5>
-                    <ul class="list-unstyled d-flex flex-column gap-2">
-                        <li><a href="index.html#ai-models-section" class="text-white-50 text-decoration-none">AI &amp; LLM Models</a></li>
-                        <li><a href="index.html#web-platform-section" class="text-white-50 text-decoration-none">Web Platforms</a></li>
-                        <li><a href="index.html#ai-marketing-section" class="text-white-50 text-decoration-none">AI Marketing</a></li>
-                        <li><a href="#" class="text-white-50 text-decoration-none">Cloud Native</a></li>
-                        <li><a href="#" class="text-white-50 text-decoration-none">Data Platforms</a></li>
+                <div class="col-6 col-lg-2">
+                    <h5 class="text-white fs-6 mb-4 fw-bold">Services</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3">
+                        <li><a href="services.html#service-ecommerce" class="footer-link">AI &amp; ML Solutions</a></li>
+                        <li><a href="services.html" class="footer-link">Web Applications</a></li>
+                        <li><a href="services.html#service-meta-ads" class="footer-link">Digital Marketing</a></li>
+                        <li><a href="services.html#service-smm" class="footer-link">Social Media</a></li>
+                        <li><a href="services.html" class="footer-link">Automation</a></li>
                     </ul>
                 </div>
-                <div class="col-md-2">
-                    <h5 class="text-white fs-6 mb-3">Follow Us</h5>
-                    <ul class="list-unstyled d-flex flex-column gap-2">
-                        <li><a href="#" class="text-white-50 text-decoration-none">LinkedIn</a></li>
-                        <li><a href="#" class="text-white-50 text-decoration-none">Twitter (X)</a></li>
-                    </ul>
+                <div class="col-lg-3 mt-5 mt-lg-0">
+                    <h5 class="text-white fs-6 mb-4 fw-bold">Stay Updated</h5>
+                    <p class="text-white-50 small mb-3">Get the latest thinking on AI, web engineering, and digital growth.</p>
+                    <div class="d-flex">
+                        <input type="email" class="form-control bg-transparent text-white border-secondary rounded-start-pill" placeholder="Email address" style="border-color: rgba(255,255,255,0.2) !important;" aria-label="Email address">
+                        <button class="btn rounded-end-pill px-3 m-0 border-0" style="background-color: var(--color-primary); color: white;" aria-label="Subscribe">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="border-top mt-5 pt-4 text-center text-white-50 small" style="border-color: rgba(255,255,255,0.1) !important;">
-                &copy; 2026 NeuroNiv LLC. All rights reserved.
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center border-top mt-5 pt-4" style="border-color: rgba(255,255,255,0.1) !important;">
+                <div class="text-white-50 small mb-3 mb-md-0">
+                    &copy; 2026 NeuroNiv. All rights reserved.
+                </div>
+                <div class="d-flex gap-4">
+                    <a href="#" class="footer-link small">Privacy Policy</a>
+                    <a href="#" class="footer-link small">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
@@ -455,17 +572,61 @@
 
                 if (!isValid) return;
 
+                // Collect form payload
+                const payload = {
+                    fullName: nameField.value.trim(),
+                    company: (document.getElementById('company') || {}).value || '',
+                    email: emailField.value.trim(),
+                    phone: (document.getElementById('phone') || {}).value || '',
+                    projectType: (document.getElementById('projectType') || {}).value || 'AI & Machine Learning',
+                    budget: (document.getElementById('budget') || {}).value || 'Flexible / Exploring',
+                    message: msgField.value.trim(),
+                    website: (document.getElementById('websiteHoneypot') || {}).value || '' // Honeypot field
+                };
+
                 submitBtn.querySelector('.submit-text').classList.add('d-none');
                 submitBtn.querySelector('.submit-plane').classList.add('d-none');
                 submitBtn.querySelector('.submit-loading').classList.remove('d-none');
                 submitBtn.disabled = true;
 
-                setTimeout(() => {
-                    contactForm.classList.add('d-none');
-                    document.getElementById('formHeading').classList.add('d-none');
-                    formSuccess.classList.remove('d-none');
-                }, 1500);
+                // Trigger 5-stage transmission experience
+                if (typeof window.initTransmissionFlow === 'function') {
+                    window.initTransmissionFlow({
+                        formEl: contactForm,
+                        overlayEl: document.getElementById('transmissionOverlay'),
+                        stagePackage: document.getElementById('stagePackage'),
+                        stageTransmit: document.getElementById('stageTransmit'),
+                        stageSuccess: document.getElementById('stageSuccess'),
+                        stageError: document.getElementById('stageError'),
+                        progressBar: document.getElementById('transmissionProgress'),
+                        payload: payload,
+                        onComplete: () => {
+                            // Submission completed successfully
+                            submitBtn.querySelector('.submit-text').classList.remove('d-none');
+                            submitBtn.querySelector('.submit-plane').classList.remove('d-none');
+                            submitBtn.querySelector('.submit-loading').classList.add('d-none');
+                            submitBtn.disabled = false;
+                        },
+                        onErrorRetry: () => {
+                            // Restore button
+                            submitBtn.querySelector('.submit-text').classList.remove('d-none');
+                            submitBtn.querySelector('.submit-plane').classList.remove('d-none');
+                            submitBtn.querySelector('.submit-loading').classList.add('d-none');
+                            submitBtn.disabled = false;
+                        }
+                    });
+                }
             });
+
+            // Send Another Message Button inside success overlay
+            const sendAnotherBtn = document.getElementById('sendAnotherBtn');
+            if (sendAnotherBtn) {
+                sendAnotherBtn.addEventListener('click', () => {
+                    const overlay = document.getElementById('transmissionOverlay');
+                    if (overlay) overlay.classList.remove('active');
+                    resetForm();
+                });
+            }
 
             contactForm.querySelectorAll('.contact-input').forEach(inp => {
                 inp.addEventListener('input', () => showError(inp, false));
