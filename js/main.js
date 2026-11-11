@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let mouseX = -100, mouseY = -100;
         let ringX = -100, ringY = -100;
         let isVisible = false;
-        let lastSparkleTime = 0;
 
+        // Smooth cursor positioning (passive & 60fps)
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
@@ -49,13 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cursorArrow.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
             cursorDot.style.transform = `translate3d(${mouseX - 3}px, ${mouseY - 3}px, 0)`;
-
-            // Spawn subtle trail sparkle
-            const now = performance.now();
-            if (now - lastSparkleTime > 45) {
-                lastSparkleTime = now;
-                spawnSparkle(mouseX, mouseY);
-            }
         }, { passive: true });
 
         document.addEventListener('mouseleave', () => {
@@ -65,30 +58,22 @@ document.addEventListener('DOMContentLoaded', () => {
             isVisible = false;
         });
 
-        // Hover expand on interactive elements
-        const interactiveSelectors = 'a, button, [role="button"], input, textarea, select, label, .industry-tile, .service-card, .ai-flow-step, .problem-card, .capability-card, .principle-card, .insight-card, .marketing-service-card, .cap-strip-item, .growth-funnel-step';
-        const addHoverListeners = (el) => {
-            el.addEventListener('mouseenter', () => {
+        // High performance event delegation for hover states (No DOM thrashing, zero MutationObserver penalty)
+        const interactiveSelectors = 'a, button, [role="button"], input, textarea, select, label, .industry-tile, .service-card, .ai-flow-step, .problem-card, .capability-card, .principle-card, .insight-card, .marketing-service-card, .cap-strip-item, .growth-funnel-step, .faq-card-modern, .contact-submit-btn, .whatsapp-floating-btn, .phone-floating-btn, .chatbot-trigger-btn';
+        
+        document.addEventListener('mouseover', (e) => {
+            if (e.target && e.target.closest && e.target.closest(interactiveSelectors)) {
                 cursorRing.classList.add('hovered');
                 cursorArrow.classList.add('hovered');
-            });
-            el.addEventListener('mouseleave', () => {
+            }
+        }, { passive: true });
+
+        document.addEventListener('mouseout', (e) => {
+            if (e.target && e.target.closest && e.target.closest(interactiveSelectors)) {
                 cursorRing.classList.remove('hovered');
                 cursorArrow.classList.remove('hovered');
-            });
-        };
-        document.querySelectorAll(interactiveSelectors).forEach(addHoverListeners);
-
-        // Dynamic element observer
-        const mutObs = new MutationObserver(mutations => {
-            mutations.forEach(m => m.addedNodes.forEach(node => {
-                if (node.nodeType === 1) {
-                    if (node.matches && node.matches(interactiveSelectors)) addHoverListeners(node);
-                    if (node.querySelectorAll) node.querySelectorAll(interactiveSelectors).forEach(addHoverListeners);
-                }
-            }));
-        });
-        mutObs.observe(document.body, { childList: true, subtree: true });
+            }
+        }, { passive: true });
 
         // Click effect
         document.addEventListener('mousedown', () => {
@@ -97,38 +82,17 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 cursorRing.classList.remove('clicked');
                 cursorDot.classList.remove('clicked');
-            }, 300);
+            }, 250);
         });
 
         // Smooth lagging ring with RAF
         const updateRing = () => {
-            ringX += (mouseX - ringX) * 0.14;
-            ringY += (mouseY - ringY) * 0.14;
+            ringX += (mouseX - ringX) * 0.18;
+            ringY += (mouseY - ringY) * 0.18;
             cursorRing.style.transform = `translate3d(${ringX - 19}px, ${ringY - 19}px, 0)`;
             requestAnimationFrame(updateRing);
         };
         updateRing();
-
-        function spawnSparkle(x, y) {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'cursor-sparkle';
-            const offsetX = (Math.random() - 0.5) * 12;
-            const offsetY = (Math.random() - 0.5) * 12;
-            const size = Math.random() * 4 + 2;
-
-            sparkle.style.left = `${x + offsetX}px`;
-            sparkle.style.top = `${y + offsetY}px`;
-            sparkle.style.width = `${size}px`;
-            sparkle.style.height = `${size}px`;
-            sparkle.style.opacity = '0.85';
-            document.body.appendChild(sparkle);
-
-            requestAnimationFrame(() => {
-                sparkle.style.transform = `translate(${offsetX * 1.5}px, ${offsetY * 1.5 - 12}px) scale(0)`;
-                sparkle.style.opacity = '0';
-            });
-            setTimeout(() => sparkle.remove(), 550);
-        }
     }
 
     /* ==========================================================================
@@ -656,15 +620,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 const alpha = Math.min(1, n.alpha + n.highlight * 0.5);
+                // Outer glow without shadowBlur performance penalty
+                if (n.highlight > 0.1) {
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, n.radius + n.highlight * 4, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(232, 121, 249, ${n.highlight * 0.25})`;
+                    ctx.fill();
+                }
                 ctx.beginPath();
                 ctx.arc(n.x, n.y, n.radius + n.highlight * 1.5, 0, Math.PI * 2);
                 ctx.fillStyle = `${n.color} ${alpha})`;
-                if (n.highlight > 0.1) {
-                    ctx.shadowBlur = 12 * n.highlight;
-                    ctx.shadowColor = '#e879f9';
-                }
                 ctx.fill();
-                ctx.shadowBlur = 0;
 
                 // Connect nearby nodes
                 for (let j = i + 1; j < networkNodes.length; j++) {
@@ -693,13 +659,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const px = pulse.from.x + (pulse.to.x - pulse.from.x) * pulse.progress;
                 const py = pulse.from.y + (pulse.to.y - pulse.from.y) * pulse.progress;
 
+                // Glowing outer halo + inner core without shadowBlur
+                ctx.beginPath();
+                ctx.arc(px, py, 4, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(232, 121, 249, 0.28)';
+                ctx.fill();
+
                 ctx.beginPath();
                 ctx.arc(px, py, 2, 0, Math.PI * 2);
                 ctx.fillStyle = pulse.color;
-                ctx.shadowBlur = 8;
-                ctx.shadowColor = pulse.color;
                 ctx.fill();
-                ctx.shadowBlur = 0;
             }
 
             animFrame = requestAnimationFrame(render);
@@ -842,14 +811,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     const curX = (1 - t) * (1 - t) * startX + 2 * (1 - t) * t * cpX + t * t * endX;
                     const curY = (1 - t) * (1 - t) * startY + 2 * (1 - t) * t * cpY + t * t * endY;
 
-                    // Packet glow dot
+                    // Packet glow outer ring + solid core (GPU friendly)
                     tCtx.beginPath();
-                    tCtx.arc(curX, curY, 5, 0, Math.PI * 2);
-                    tCtx.fillStyle = '#38bdf8';
-                    tCtx.shadowBlur = 15;
-                    tCtx.shadowColor = '#38bdf8';
+                    tCtx.arc(curX, curY, 9, 0, Math.PI * 2);
+                    tCtx.fillStyle = 'rgba(56, 189, 248, 0.28)';
                     tCtx.fill();
-                    tCtx.shadowBlur = 0;
+
+                    tCtx.beginPath();
+                    tCtx.arc(curX, curY, 4.5, 0, Math.PI * 2);
+                    tCtx.fillStyle = '#38bdf8';
+                    tCtx.fill();
 
                     if (travelProgress < 1 && !isDelivering) {
                         transAnimId = requestAnimationFrame(drawTransmission);

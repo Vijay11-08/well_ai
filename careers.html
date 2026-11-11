@@ -18,6 +18,28 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+        .career-job-card {
+            background: rgba(38, 6, 56, 0.6) !important;
+            border: 1px solid rgba(232, 121, 249, 0.18) !important;
+            border-radius: 20px !important;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .career-job-card:hover {
+            background: rgba(56, 10, 82, 0.8) !important;
+            border-color: rgba(232, 121, 249, 0.45) !important;
+            transform: translateY(-4px) !important;
+            box-shadow: 0 16px 36px rgba(23, 3, 35, 0.45) !important;
+        }
+        .career-job-card:hover .career-arrow-wrap {
+            color: #e879f9 !important;
+            transform: translateX(4px);
+        }
+        .career-arrow-wrap {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -72,7 +94,7 @@
                     
                     <div class="list-group list-group-flush gap-3 border-0">
                         <!-- Job 1 -->
-                        <a href="#" class="list-group-item list-group-item-action bg-transparent border rounded-4 p-4 d-flex justify-content-between align-items-center" style="border-color: rgba(255,255,255,0.1) !important; cursor: none;">
+                        <a href="#" class="list-group-item list-group-item-action career-job-card border p-4 d-flex justify-content-between align-items-center" style="cursor: none;">
                             <div>
                                 <h4 class="text-white fs-5 fw-bold mb-2">Senior Full Stack Engineer (AI Products)</h4>
                                 <div class="d-flex gap-3 text-white-50 small">
@@ -80,13 +102,13 @@
                                     <span>Full-time</span>
                                 </div>
                             </div>
-                            <div class="text-white opacity-50">
+                            <div class="text-white opacity-50 career-arrow-wrap">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                             </div>
                         </a>
 
                         <!-- Job 2 -->
-                        <a href="#" class="list-group-item list-group-item-action bg-transparent border rounded-4 p-4 d-flex justify-content-between align-items-center" style="border-color: rgba(255,255,255,0.1) !important; cursor: none;">
+                        <a href="#" class="list-group-item list-group-item-action career-job-card border p-4 d-flex justify-content-between align-items-center" style="cursor: none;">
                             <div>
                                 <h4 class="text-white fs-5 fw-bold mb-2">Cloud Solutions Architect (AWS/GCP)</h4>
                                 <div class="d-flex gap-3 text-white-50 small">
@@ -94,13 +116,13 @@
                                     <span>Full-time</span>
                                 </div>
                             </div>
-                            <div class="text-white opacity-50">
+                            <div class="text-white opacity-50 career-arrow-wrap">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                             </div>
                         </a>
                         
                         <!-- Job 3 -->
-                        <a href="#" class="list-group-item list-group-item-action bg-transparent border rounded-4 p-4 d-flex justify-content-between align-items-center" style="border-color: rgba(255,255,255,0.1) !important; cursor: none;">
+                        <a href="#" class="list-group-item list-group-item-action career-job-card border p-4 d-flex justify-content-between align-items-center" style="cursor: none;">
                             <div>
                                 <h4 class="text-white fs-5 fw-bold mb-2">Lead Data Engineer</h4>
                                 <div class="d-flex gap-3 text-white-50 small">
@@ -108,13 +130,13 @@
                                     <span>Full-time</span>
                                 </div>
                             </div>
-                            <div class="text-white opacity-50">
+                            <div class="text-white opacity-50 career-arrow-wrap">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                             </div>
                         </a>
 
                         <!-- Job 4 -->
-                        <a href="#" class="list-group-item list-group-item-action bg-transparent border rounded-4 p-4 d-flex justify-content-between align-items-center" style="border-color: rgba(255,255,255,0.1) !important; cursor: none;">
+                        <a href="#" class="list-group-item list-group-item-action career-job-card border p-4 d-flex justify-content-between align-items-center" style="cursor: none;">
                             <div>
                                 <h4 class="text-white fs-5 fw-bold mb-2">AI/ML Engineer (LLM &amp; RAG Systems)</h4>
                                 <div class="d-flex gap-3 text-white-50 small">
@@ -122,13 +144,13 @@
                                     <span>Full-time</span>
                                 </div>
                             </div>
-                            <div class="text-white opacity-50">
+                            <div class="text-white opacity-50 career-arrow-wrap">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                             </div>
                         </a>
 
                         <!-- Job 5 -->
-                        <a href="#" class="list-group-item list-group-item-action bg-transparent border rounded-4 p-4 d-flex justify-content-between align-items-center" style="border-color: rgba(255,255,255,0.1) !important; cursor: none;">
+                        <a href="#" class="list-group-item list-group-item-action career-job-card border p-4 d-flex justify-content-between align-items-center" style="cursor: none;">
                             <div>
                                 <h4 class="text-white fs-5 fw-bold mb-2">Senior Web Engineer (Next.js / React)</h4>
                                 <div class="d-flex gap-3 text-white-50 small">
@@ -136,13 +158,13 @@
                                     <span>Full-time</span>
                                 </div>
                             </div>
-                            <div class="text-white opacity-50">
+                            <div class="text-white opacity-50 career-arrow-wrap">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                             </div>
                         </a>
 
                         <!-- Job 6 -->
-                        <a href="#" class="list-group-item list-group-item-action bg-transparent border rounded-4 p-4 d-flex justify-content-between align-items-center" style="border-color: rgba(255,255,255,0.1) !important; cursor: none;">
+                        <a href="#" class="list-group-item list-group-item-action career-job-card border p-4 d-flex justify-content-between align-items-center" style="cursor: none;">
                             <div>
                                 <h4 class="text-white fs-5 fw-bold mb-2">Marketing Technologist (AI &amp; Automation)</h4>
                                 <div class="d-flex gap-3 text-white-50 small">
@@ -150,7 +172,7 @@
                                     <span>Full-time</span>
                                 </div>
                             </div>
-                            <div class="text-white opacity-50">
+                            <div class="text-white opacity-50 career-arrow-wrap">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                             </div>
                         </a>

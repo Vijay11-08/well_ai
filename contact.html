@@ -23,17 +23,19 @@
         /* ── Contact Card (White, Clean) ─────────────────────── */
         .contact-card-wrap {
             background: #ffffff;
-            border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.13);
+            border-radius: 28px;
+            padding: 2.8rem;
+            box-shadow: 0 20px 60px rgba(23,3,35,0.08), 0 2px 8px rgba(23,3,35,0.04);
+            border: 1px solid rgba(38, 6, 56, 0.08);
+            position: relative;
         }
         .contact-card-title {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            color: #111827;
+            color: #170323;
             margin-bottom: 1.75rem;
             font-family: var(--font-heading);
-            letter-spacing: -0.02em;
+            letter-spacing: -0.025em;
         }
         .contact-fields { display: flex; flex-direction: column; gap: 1.15rem; }
         .contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -42,46 +44,47 @@
             .contact-card-wrap { padding: 1.5rem; }
         }
         .contact-field-group { display: flex; flex-direction: column; gap: 0.4rem; }
-        .contact-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; color: #6b7280; }
-        .required-star { color: #ef4444; }
+        .contact-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; color: #5e5666; }
+        .required-star { color: #e11d48; }
         .contact-input {
-            border: 1.5px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 0.75rem 1rem;
+            border: 1.5px solid rgba(38, 6, 56, 0.12);
+            border-radius: 14px;
+            padding: 0.8rem 1.1rem;
             font-size: 0.92rem;
-            color: #111827;
-            background: #fff;
+            color: #170323;
+            background: #fdfdfe;
             transition: all 0.25s ease;
             font-family: var(--font-body);
             width: 100%;
             outline: none;
             -webkit-appearance: none;
         }
-        .contact-input::placeholder { color: #c1c7d0; }
+        .contact-input::placeholder { color: #a49da9; }
         .contact-input:focus {
-            border-color: #0ea5e9;
-            box-shadow: 0 0 0 3px rgba(14,165,233,0.15);
+            border-color: #260638;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(38,6,56,0.1);
         }
-        .contact-input.is-invalid { border-color: #ef4444; }
-        .field-error { font-size: 0.75rem; color: #ef4444; display: none; margin-top: 2px; }
+        .contact-input.is-invalid { border-color: #e11d48; }
+        .field-error { font-size: 0.75rem; color: #e11d48; display: none; margin-top: 2px; }
         .contact-field-group.has-error .field-error { display: block; }
-        .contact-field-group.has-error .contact-input { border-color: #ef4444; }
+        .contact-field-group.has-error .contact-input { border-color: #e11d48; }
 
         /* Select */
         .contact-select-wrap { position: relative; }
         .contact-select { appearance: none; -webkit-appearance: none; padding-right: 2.5rem; cursor: pointer; }
-        .select-chevron { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #6b7280; }
+        .select-chevron { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #5e5666; }
 
         /* Textarea */
         .contact-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
 
-        /* Submit button — teal */
+        /* Submit button — Deep Royal Purple */
         .contact-submit-btn {
             width: 100%;
-            padding: 1rem 1.5rem;
-            background: #0ea5e9;
+            padding: 1.05rem 1.5rem;
+            background: linear-gradient(135deg, #260638 0%, #4a0e60 50%, #260638 100%);
             color: white;
-            border: none;
+            border: 1px solid rgba(232, 121, 249, 0.3);
             border-radius: 9999px;
             font-size: 1rem;
             font-weight: 700;
@@ -91,15 +94,16 @@
             justify-content: center;
             gap: 0.6rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             margin-top: 0.5rem;
-            box-shadow: 0 4px 20px rgba(14,165,233,0.3);
+            box-shadow: 0 10px 28px rgba(38,6,56,0.35);
             letter-spacing: 0.01em;
         }
         .contact-submit-btn:hover {
-            background: #0284c7;
+            background: linear-gradient(135deg, #36094f 0%, #5d1278 50%, #36094f 100%);
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(14,165,233,0.4);
+            box-shadow: 0 14px 34px rgba(38,6,56,0.45);
+            border-color: rgba(232, 121, 249, 0.6);
         }
         .contact-submit-btn:active { transform: translateY(0); }
         .submit-plane { transition: transform 0.3s ease; }
@@ -108,43 +112,65 @@
         @keyframes spin { to { transform: rotate(360deg); } }
 
         /* Privacy note */
-        .contact-privacy-note { text-align: center; font-size: 0.78rem; color: #9ca3af; margin-top: 0.6rem; margin-bottom: 0; }
+        .contact-privacy-note { text-align: center; font-size: 0.78rem; color: #7a7382; margin-top: 0.6rem; margin-bottom: 0; }
 
-        /* Left column info */
+        /* Left column Deep Purple Anchor Card */
+        .contact-purple-panel {
+            background: linear-gradient(145deg, #260638 0%, #170323 100%);
+            border: 1px solid rgba(232, 121, 249, 0.22);
+            border-radius: 28px;
+            padding: 2.8rem;
+            box-shadow: 0 20px 50px rgba(23, 3, 35, 0.45);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .contact-purple-panel__arch {
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            opacity: 0.22;
+            pointer-events: none;
+            width: 220px;
+            height: 220px;
+        }
         .contact-icon-wrap {
-            width: 48px; height: 48px; min-width: 48px;
-            background: rgba(232,121,249,0.1);
-            border: 1px solid rgba(232,121,249,0.2);
-            border-radius: 14px;
+            width: 44px; height: 44px; min-width: 44px;
+            background: rgba(232,121,249,0.12);
+            border: 1px solid rgba(232,121,249,0.25);
+            border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
             color: var(--color-primary);
             transition: all 0.3s ease;
         }
-        .contact-info-item:hover .contact-icon-wrap { background: rgba(232,121,249,0.2); border-color: rgba(232,121,249,0.4); transform: scale(1.05); }
-        .contact-link { color: rgba(255,255,255,0.5); transition: color 0.2s ease; }
-        .contact-link:hover { color: var(--color-primary); }
-        .availability-badge { display: inline-flex; align-items: center; gap: 10px; padding: 10px 20px; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); border-radius: 9999px; }
-        .availability-dot { width: 10px; height: 10px; min-width: 10px; background: #22c55e; border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite; box-shadow: 0 0 8px rgba(34,197,94,0.5); }
+        .contact-info-item:hover .contact-icon-wrap { background: rgba(232,121,249,0.22); border-color: rgba(232,121,249,0.5); transform: scale(1.05); }
+        .contact-link { color: rgba(255,255,255,0.7); transition: color 0.2s ease; }
+        .contact-link:hover { color: #ffffff; }
+        .availability-badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); border-radius: 9999px; }
+        .availability-dot { width: 9px; height: 9px; min-width: 9px; background: #10b981; border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite; box-shadow: 0 0 8px rgba(16,185,129,0.6); }
         @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.85);} }
 
         /* Service chips */
         .service-chip {
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            border-color: #d1d5db !important;
-            color: #374151 !important;
-            background: #f9fafb !important;
+            border: 1px solid rgba(38, 6, 56, 0.12) !important;
+            color: #170323 !important;
+            background: #f8f7fb !important;
         }
         .service-chip:hover {
-            border-color: #0ea5e9 !important;
-            color: #0ea5e9 !important;
-            background: #f0f9ff !important;
+            border-color: #260638 !important;
+            color: #260638 !important;
+            background: rgba(232, 121, 249, 0.1) !important;
             transform: translateY(-1px);
         }
         .service-chip.active {
-            background: #0f172a !important;
-            border-color: #0f172a !important;
+            background: #260638 !important;
+            border-color: #260638 !important;
             color: #ffffff !important;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+            box-shadow: 0 4px 14px rgba(38, 6, 56, 0.25);
         }
 
         /* Success */
@@ -232,101 +258,111 @@
                 </div>
             </div>
 
-            <div class="row justify-content-center g-5">
+            <div class="row justify-content-center g-4 g-lg-5 align-items-stretch">
 
-                <!-- Left: Info -->
-                <div class="col-lg-5 text-center text-lg-start fade-up">
-                    <h1 class="text-white fw-bold mb-4" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; font-family: var(--font-heading);">
-                        Let's build <br/> something <span class="hand-font" style="color: var(--color-primary);">great<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
-                    </h1>
-                    <p class="text-white-50 fs-5 mb-5">
-                        Tell us about your project, timeline, and goals. Our engineering team will review it and get back to you within 24 hours.
-                    </p>
-                    
-                    <div class="d-flex flex-column gap-3">
-                        <div class="contact-info-item d-flex align-items-start gap-3">
-                            <div class="contact-icon-wrap">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                            </div>
-                            <div>
-                                <h5 class="text-white fs-6 fw-bold mb-1">Email Us</h5>
-                                <a href="mailto:info@neuroniv.com" class="contact-link text-decoration-none">info@neuroniv.com</a>
+                <!-- Left: Deep Purple Anchor Card (Matching FAQ Reference) -->
+                <div class="col-lg-5 fade-up">
+                    <div class="contact-purple-panel">
+                        <!-- Dotted Arch SVG Motif (Exact visual from FAQ reference image) -->
+                        <svg class="contact-purple-panel__arch" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <g fill="rgba(232, 121, 249, 0.45)">
+                                <circle cx="80" cy="20" r="3"/>
+                                <circle cx="95" cy="23" r="3"/><circle cx="65" cy="23" r="3"/>
+                                <circle cx="110" cy="30" r="3"/><circle cx="50" cy="30" r="3"/>
+                                <circle cx="125" cy="42" r="3"/><circle cx="35" cy="42" r="3"/>
+                                <circle cx="137" cy="58" r="3"/><circle cx="23" cy="58" r="3"/>
+                                <circle cx="145" cy="76" r="3"/><circle cx="15" cy="76" r="3"/>
+                                <circle cx="148" cy="95" r="3"/><circle cx="12" cy="95" r="3"/>
+                                <circle cx="148" cy="115" r="3"/><circle cx="12" cy="115" r="3"/>
+                                <circle cx="148" cy="135" r="3"/><circle cx="12" cy="135" r="3"/>
+
+                                <circle cx="80" cy="35" r="2.5"/>
+                                <circle cx="92" cy="38" r="2.5"/><circle cx="68" cy="38" r="2.5"/>
+                                <circle cx="104" cy="44" r="2.5"/><circle cx="56" cy="44" r="2.5"/>
+                                <circle cx="116" cy="54" r="2.5"/><circle cx="44" cy="54" r="2.5"/>
+                                <circle cx="125" cy="68" r="2.5"/><circle cx="35" cy="68" r="2.5"/>
+                                <circle cx="131" cy="84" r="2.5"/><circle cx="29" cy="84" r="2.5"/>
+                                <circle cx="133" cy="100" r="2.5"/><circle cx="27" cy="100" r="2.5"/>
+                                <circle cx="133" cy="120" r="2.5"/><circle cx="27" cy="120" r="2.5"/>
+                                <circle cx="133" cy="140" r="2.5"/><circle cx="27" cy="140" r="2.5"/>
+
+                                <circle cx="80" cy="50" r="2"/>
+                                <circle cx="90" cy="52" r="2"/><circle cx="70" cy="52" r="2"/>
+                                <circle cx="100" cy="58" r="2"/><circle cx="60" cy="58" r="2"/>
+                                <circle cx="109" cy="68" r="2"/><circle cx="51" cy="68" r="2"/>
+                                <circle cx="116" cy="80" r="2"/><circle cx="44" cy="80" r="2"/>
+                                <circle cx="120" cy="96" r="2"/><circle cx="40" cy="96" r="2"/>
+                                <circle cx="120" cy="115" r="2"/><circle cx="40" cy="115" r="2"/>
+                                <circle cx="120" cy="135" r="2"/><circle cx="40" cy="135" r="2"/>
+                            </g>
+                        </svg>
+
+                        <div>
+                            <span class="badge-custom d-inline-block mb-3" style="background: rgba(232, 121, 249, 0.15); color: #e879f9; border-color: rgba(232, 121, 249, 0.3);">Get in Touch</span>
+                            <h1 class="text-white fw-bold mb-3" style="font-size: clamp(2.2rem, 3.6vw, 3.2rem); line-height: 1.15; font-family: var(--font-heading); letter-spacing: -0.03em;">
+                                Let's build <br/> something <span class="hand-font" style="color: var(--color-primary);">great<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                            </h1>
+                            <p class="text-white-50 mb-4" style="line-height: 1.65; font-size: 0.98rem;">
+                                Tell us about your project, timeline, and goals. Our engineering team reviews requirements and responds within 24 hours.
+                            </p>
+                            
+                            <div class="d-flex flex-column gap-3 mb-4">
+                                <div class="contact-info-item d-flex align-items-center gap-3">
+                                    <div class="contact-icon-wrap">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-white small fw-bold">Email Us</div>
+                                        <a href="mailto:info@neuroniv.com" class="contact-link text-decoration-none small">info@neuroniv.com</a>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info-item d-flex align-items-center gap-3">
+                                    <div class="contact-icon-wrap" style="background: rgba(37, 211, 102, 0.15); border-color: rgba(37, 211, 102, 0.35); color: #25d366;">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.78 14.07c-.24.68-1.39 1.3-1.92 1.38-.49.08-1.12.11-3.26-.78-2.73-1.14-4.5-3.92-4.64-4.1-.14-.19-1.11-1.48-1.11-2.82 0-1.34.7-2 1-2.28.24-.24.52-.3.7-.3.17 0 .35 0 .5.01.16.01.38-.06.59.45.24.57.81 1.98.88 2.12.07.15.12.32.02.51-.1.2-.15.32-.3.49-.15.17-.31.39-.45.52-.15.15-.3.32-.13.62.17.3 1.09 1.8 2.34 2.91 1.62 1.44 2.98 1.89 3.41 2.1.42.21.67.18.92-.1.25-.29 1.07-1.25 1.36-1.68.29-.43.58-.36.98-.21.4.15 2.54 1.2 2.98 1.42.44.22.73.33.84.51.11.19.11 1.09-.13 1.77z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-white small fw-bold">WhatsApp Direct</div>
+                                        <a href="https://wa.me/918320852144?text=Hello%20NeuroNiv%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="contact-link text-decoration-none small" style="color: #4ade80;">+91 83208 52144</a>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info-item d-flex align-items-center gap-3">
+                                    <div class="contact-icon-wrap" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8;">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-white small fw-bold">Telephone</div>
+                                        <a href="tel:+918320852144" class="contact-link text-decoration-none small" style="color: #7dd3fc;">+91 83208 52144</a>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info-item d-flex align-items-center gap-3">
+                                    <div class="contact-icon-wrap">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-white small fw-bold">Headquarters</div>
+                                        <p class="text-white-50 small mb-0">Rajkot, Gujarat, India</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="contact-info-item d-flex align-items-start gap-3">
-                            <div class="contact-icon-wrap" style="background: rgba(37, 211, 102, 0.12); border-color: rgba(37, 211, 102, 0.35); color: #25d366;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.78 14.07c-.24.68-1.39 1.3-1.92 1.38-.49.08-1.12.11-3.26-.78-2.73-1.14-4.5-3.92-4.64-4.1-.14-.19-1.11-1.48-1.11-2.82 0-1.34.7-2 1-2.28.24-.24.52-.3.7-.3.17 0 .35 0 .5.01.16.01.38-.06.59.45.24.57.81 1.98.88 2.12.07.15.12.32.02.51-.1.2-.15.32-.3.49-.15.17-.31.39-.45.52-.15.15-.3.32-.13.62.17.3 1.09 1.8 2.34 2.91 1.62 1.44 2.98 1.89 3.41 2.1.42.21.67.18.92-.1.25-.29 1.07-1.25 1.36-1.68.29-.43.58-.36.98-.21.4.15 2.54 1.2 2.98 1.42.44.22.73.33.84.51.11.19.11 1.09-.13 1.77z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h5 class="text-white fs-6 fw-bold mb-1">WhatsApp Us</h5>
-                                <a href="https://wa.me/918320852144?text=Hello%20NeuroNiv%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="contact-link text-decoration-none" style="color: #25d366;">+91 83208 52144</a>
+                        <div class="pt-3 border-top" style="border-color: rgba(255,255,255,0.1) !important;">
+                            <div class="availability-badge">
+                                <span class="availability-dot"></span>
+                                <span class="text-white small">Accepting New Client Engagements</span>
                             </div>
                         </div>
-
-                        <div class="contact-info-item d-flex align-items-start gap-3">
-                            <div class="contact-icon-wrap" style="background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h5 class="text-white fs-6 fw-bold mb-1">Call Directly</h5>
-                                <a href="tel:+918320852144" class="contact-link text-decoration-none" style="color: #38bdf8;">+91 83208 52144</a>
-                            </div>
-                        </div>
-
-                        <div class="contact-info-item d-flex align-items-start gap-3">
-                            <div class="contact-icon-wrap">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                            </div>
-                            <div>
-                                <h5 class="text-white fs-6 fw-bold mb-1">Headquarters</h5>
-                                <p class="text-white-50 small mb-0">Rajkot, Gujarat, India</p>
-                            </div>
-                        </div>
-                        <div class="contact-info-item d-flex align-items-start gap-3">
-                            <div class="contact-icon-wrap">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                            </div>
-                            <div>
-                                <h5 class="text-white fs-6 fw-bold mb-1">Response Time</h5>
-                                <p class="text-white-50 small mb-0">We typically respond within 24 hours</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Quick Conversation Communication Panel -->
-                    <div class="quick-comm-panel mt-4">
-                        <div class="d-flex align-items-center gap-2 mb-2">
-                            <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981;"></span>
-                            <span class="text-white small fw-bold" style="letter-spacing: -0.01em;">Prefer a quick conversation?</span>
-                        </div>
-                        <p class="text-white-50 small mb-3" style="line-height: 1.5;">Reach our engineering and growth consultants directly on WhatsApp or telephone for an immediate discussion.</p>
-                        <div class="d-flex flex-wrap gap-2">
-                            <a href="https://wa.me/918320852144?text=Hello%20NeuroNiv%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-custom text-decoration-none d-inline-flex align-items-center gap-2">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.78 14.07c-.24.68-1.39 1.3-1.92 1.38-.49.08-1.12.11-3.26-.78-2.73-1.14-4.5-3.92-4.64-4.1-.14-.19-1.11-1.48-1.11-2.82 0-1.34.7-2 1-2.28.24-.24.52-.3.7-.3.17 0 .35 0 .5.01.16.01.38-.06.59.45.24.57.81 1.98.88 2.12.07.15.12.32.02.51-.1.2-.15.32-.3.49-.15.17-.31.39-.45.52-.15.15-.3.32-.13.62.17.3 1.09 1.8 2.34 2.91 1.62 1.44 2.98 1.89 3.41 2.1.42.21.67.18.92-.1.25-.29 1.07-1.25 1.36-1.68.29-.43.58-.36.98-.21.4.15 2.54 1.2 2.98 1.42.44.22.73.33.84.51.11.19.11 1.09-.13 1.77z"/></svg>
-                                WhatsApp us
-                            </a>
-                            <a href="tel:+918320852144" class="btn-phone-custom text-decoration-none d-inline-flex align-items-center gap-2">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                                Call us
-                            </a>
-                            <a href="#contactForm" class="btn-inquiry-custom text-decoration-none d-inline-flex align-items-center gap-2">
-                                Send a project inquiry
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="availability-badge mt-4">
-                        <span class="availability-dot"></span>
-                        <span class="text-white-50 small">Currently accepting new projects</span>
                     </div>
                 </div>
 
-                <!-- Right: White Card Form -->
+                <!-- Right: White Card Form (Clean & Contrast) -->
                 <div class="col-lg-7 fade-up" style="transition-delay: 0.1s;">
                     <div class="contact-card-wrap">
                         <h3 class="contact-card-title" id="formHeading">Tell us about your project</h3>
@@ -497,18 +533,24 @@
 
                             <!-- Error State: Transmission Failure -->
                             <div class="transmission-stage" id="stageError">
-                                <div class="error-icon-wrap">
-                                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <div class="error-icon-wrap mb-3">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                         <circle cx="12" cy="12" r="10"></circle>
                                         <line x1="12" y1="8" x2="12" y2="12"></line>
                                         <line x1="12" y1="16" x2="12.01" y2="16"></line>
                                     </svg>
                                 </div>
                                 <h3 class="text-white fw-bold mb-2 fs-4">We Couldn't Deliver Your Message</h3>
-                                <p class="text-white-50 small mb-4" id="packetErrorMsg" style="line-height: 1.6;">
-                                    Something went wrong while routing your inquiry. Please try again or reach out directly at <a href="mailto:info@neuroniv.com" class="text-info text-decoration-none">info@neuroniv.com</a>.
+                                <p class="text-white-50 small mb-4" id="packetErrorMsg" style="line-height: 1.6; max-width: 440px; margin-left: auto; margin-right: auto;">
+                                    Something went wrong while routing your inquiry. Please try again or connect directly with our engineering team on WhatsApp.
                                 </p>
-                                <button type="button" class="btn btn-primary-custom" id="packetRetryBtn">Try Again</button>
+                                <div class="d-flex flex-wrap justify-content-center gap-3">
+                                    <button type="button" class="btn btn-outline-light rounded-pill px-4 fw-semibold" id="packetRetryBtn">Try Again</button>
+                                    <a href="https://wa.me/918320852144?text=Hello%20NeuroNiv%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="btn rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2" style="background:#25d366; color:#ffffff; box-shadow:0 8px 24px rgba(37,211,102,0.35);">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.78 14.07c-.24.68-1.39 1.3-1.92 1.38-.49.08-1.12.11-3.26-.78-2.73-1.14-4.5-3.92-4.64-4.1-.14-.19-1.11-1.48-1.11-2.82 0-1.34.7-2 1-2.28.24-.24.52-.3.7-.3.17 0 .35 0 .5.01.16.01.38-.06.59.45.24.57.81 1.98.88 2.12.07.15.12.32.02.51-.1.2-.15.32-.3.49-.15.17-.31.39-.45.52-.15.15-.3.32-.13.62.17.3 1.09 1.8 2.34 2.91 1.62 1.44 2.98 1.89 3.41 2.1.42.21.67.18.92-.1.25-.29 1.07-1.25 1.36-1.68.29-.43.58-.36.98-.21.4.15 2.54 1.2 2.98 1.42.44.22.73.33.84.51.11.19.11 1.09-.13 1.77z"/></svg>
+                                        Chat on WhatsApp
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

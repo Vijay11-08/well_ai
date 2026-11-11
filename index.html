@@ -1649,7 +1649,7 @@
     <!-- ══════════════════════════════════════════════════
          SECTION 18 — FINAL CTA
          ══════════════════════════════════════════════════ -->
-    <section class="py-5 position-relative overflow-hidden" style="background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(30, 9, 51, 0.95) 0%, #070314 100%); border-top: 1px solid rgba(232,121,249,0.15);">
+    <section class="py-5 position-relative overflow-hidden" style="background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(38, 6, 56, 0.95) 0%, var(--color-bg-base) 100%); border-top: 1px solid rgba(232,121,249,0.18);">
         <canvas id="cta-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.6;" aria-hidden="true"></canvas>
         <div class="container py-5 text-center fade-up position-relative" style="z-index: 2;">
             <span class="badge-custom d-inline-block mb-3">Let's Build Together</span>
@@ -1713,7 +1713,11 @@
                     size:SZ+Math.random()*.8});
             }
         }
+        let isParticleVisible = true;
+        let particleRaf = null;
+
         function animate(){
+            if (!isParticleVisible) return;
             ctx.clearRect(0,0,W,H);
             for(let i=0;i<dots.length;i++){
                 const d=dots[i],dx=d.x-mouse.x,dy=d.y-mouse.y;
@@ -1722,29 +1726,40 @@
                     d.vx+=Math.cos(a)*f*REPEL_F;d.vy+=Math.sin(a)*f*REPEL_F;}
                 d.vx+=(d.ox-d.x)*RETURN;d.vy+=(d.oy-d.y)*RETURN;
                 d.vx*=FRIC;d.vy*=FRIC;d.x+=d.vx;d.y+=d.vy;
-                const g=Math.min(Math.sqrt((d.x-d.ox)**2+(d.y-d.oy)**2)/15,1);
-                ctx.save();ctx.globalAlpha=.85+g*.15;
-                if(g>.04){ctx.shadowBlur=10+g*16;ctx.shadowColor=d.color;}
+                
                 ctx.fillStyle=d.color;
                 ctx.beginPath();ctx.arc(d.x,d.y,d.size,0,Math.PI*2);ctx.fill();
-                ctx.restore();
             }
-            requestAnimationFrame(animate);
+            particleRaf = requestAnimationFrame(animate);
         }
         const sec=document.getElementById('particle-text-section');
         let hh=false;
+
+        // Pause animation when scrolled off screen (Huge performance boost)
+        const pObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                isParticleVisible = e.isIntersecting;
+                if (isParticleVisible) {
+                    if (!particleRaf) particleRaf = requestAnimationFrame(animate);
+                } else {
+                    if (particleRaf) { cancelAnimationFrame(particleRaf); particleRaf = null; }
+                }
+            });
+        }, { threshold: 0.05 });
+        if (sec) pObs.observe(sec);
+
         sec.addEventListener('mousemove',function(e){
             const r=canvas.getBoundingClientRect();
             mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;
             if(!hh){hint.style.opacity='0';hh=true;}
-        });
+        }, { passive: true });
         sec.addEventListener('mouseleave',function(){mouse.x=-9999;mouse.y=-9999;});
-        sec.addEventListener('touchmove',function(e){e.preventDefault();
+        sec.addEventListener('touchmove',function(e){
             const r=canvas.getBoundingClientRect(),t=e.touches[0];
             mouse.x=t.clientX-r.left;mouse.y=t.clientY-r.top;
-        },{passive:false});
+        },{passive:true});
         sec.addEventListener('touchend',function(){mouse.x=-9999;mouse.y=-9999;});
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', resize, { passive: true });
         document.fonts.ready.then(function() { resize(); animate(); });
     })();
     </script>
@@ -1842,7 +1857,11 @@
                 });
             }
         }
+        let isCtaVisible = true;
+        let ctaRaf = null;
+
         function draw() {
+            if (!isCtaVisible) return;
             ctx.clearRect(0, 0, w, h);
             dots.forEach(d => {
                 d.x += d.vx; d.y += d.vy;
@@ -1859,20 +1878,33 @@
                 for (let j = i + 1; j < dots.length; j++) {
                     const dx = dots[i].x - dots[j].x, dy = dots[i].y - dots[j].y;
                     const dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < 100) {
+                    if (dist < 90) {
                         ctx.beginPath();
                         ctx.moveTo(dots[i].x, dots[i].y);
                         ctx.lineTo(dots[j].x, dots[j].y);
-                        ctx.strokeStyle = 'rgba(232,121,249,' + (0.12 * (1 - dist/100)) + ')';
+                        ctx.strokeStyle = 'rgba(232,121,249,' + (0.12 * (1 - dist/90)) + ')';
                         ctx.lineWidth = 0.8;
                         ctx.globalAlpha = 1;
                         ctx.stroke();
                     }
                 }
             }
-            requestAnimationFrame(draw);
+            ctaRaf = requestAnimationFrame(draw);
         }
-        window.addEventListener('resize', () => { resize(); init(); });
+
+        const ctaObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                isCtaVisible = e.isIntersecting;
+                if (isCtaVisible) {
+                    if (!ctaRaf) ctaRaf = requestAnimationFrame(draw);
+                } else {
+                    if (ctaRaf) { cancelAnimationFrame(ctaRaf); ctaRaf = null; }
+                }
+            });
+        }, { threshold: 0.05 });
+        ctaObs.observe(ctaCanvas);
+
+        window.addEventListener('resize', () => { resize(); init(); }, { passive: true });
         resize(); init(); draw();
     })();
     </script>
