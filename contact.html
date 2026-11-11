@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact Us | NeuroNiv — AI-Native Product Engineering Studio</title>
+    <meta name="description" content="Start a project with NeuroNiv. Get a technical assessment for your AI model, web platform, or marketing system within 48 hours." />
+    <meta property="og:title" content="Contact NeuroNiv — AI-Native Product Engineering Studio" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+        /* ── Contact Card (White, Clean) ─────────────────────── */
+        .contact-card-wrap {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.13);
+        }
+        .contact-card-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 1.75rem;
+            font-family: var(--font-heading);
+            letter-spacing: -0.02em;
+        }
+        .contact-fields { display: flex; flex-direction: column; gap: 1.15rem; }
+        .contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media (max-width: 576px) {
+            .contact-row { grid-template-columns: 1fr; }
+            .contact-card-wrap { padding: 1.5rem; }
+        }
+        .contact-field-group { display: flex; flex-direction: column; gap: 0.4rem; }
+        .contact-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; color: #6b7280; }
+        .required-star { color: #ef4444; }
+        .contact-input {
+            border: 1.5px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            font-size: 0.92rem;
+            color: #111827;
+            background: #fff;
+            transition: all 0.25s ease;
+            font-family: var(--font-body);
+            width: 100%;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        .contact-input::placeholder { color: #c1c7d0; }
+        .contact-input:focus {
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 3px rgba(14,165,233,0.15);
+        }
+        .contact-input.is-invalid { border-color: #ef4444; }
+        .field-error { font-size: 0.75rem; color: #ef4444; display: none; margin-top: 2px; }
+        .contact-field-group.has-error .field-error { display: block; }
+        .contact-field-group.has-error .contact-input { border-color: #ef4444; }
+
+        /* Select */
+        .contact-select-wrap { position: relative; }
+        .contact-select { appearance: none; -webkit-appearance: none; padding-right: 2.5rem; cursor: pointer; }
+        .select-chevron { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #6b7280; }
+
+        /* Textarea */
+        .contact-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+
+        /* Submit button — teal */
+        .contact-submit-btn {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: var(--font-body);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 20px rgba(14,165,233,0.3);
+            letter-spacing: 0.01em;
+        }
+        .contact-submit-btn:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(14,165,233,0.4);
+        }
+        .contact-submit-btn:active { transform: translateY(0); }
+        .submit-plane { transition: transform 0.3s ease; }
+        .contact-submit-btn:hover .submit-plane { transform: translateX(3px) translateY(-2px); }
+        .spinner-icon { animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Privacy note */
+        .contact-privacy-note { text-align: center; font-size: 0.78rem; color: #9ca3af; margin-top: 0.6rem; margin-bottom: 0; }
+
+        /* Left column info */
+        .contact-icon-wrap {
+            width: 48px; height: 48px; min-width: 48px;
+            background: rgba(232,121,249,0.1);
+            border: 1px solid rgba(232,121,249,0.2);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--color-primary);
+            transition: all 0.3s ease;
+        }
+        .contact-info-item:hover .contact-icon-wrap { background: rgba(232,121,249,0.2); border-color: rgba(232,121,249,0.4); transform: scale(1.05); }
+        .contact-link { color: rgba(255,255,255,0.5); transition: color 0.2s ease; }
+        .contact-link:hover { color: var(--color-primary); }
+        .availability-badge { display: inline-flex; align-items: center; gap: 10px; padding: 10px 20px; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); border-radius: 9999px; }
+        .availability-dot { width: 10px; height: 10px; min-width: 10px; background: #22c55e; border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite; box-shadow: 0 0 8px rgba(34,197,94,0.5); }
+        @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.85);} }
+
+        /* Service chips */
+        .service-chip {
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            border-color: #d1d5db !important;
+            color: #374151 !important;
+            background: #f9fafb !important;
+        }
+        .service-chip:hover {
+            border-color: #0ea5e9 !important;
+            color: #0ea5e9 !important;
+            background: #f0f9ff !important;
+            transform: translateY(-1px);
+        }
+        .service-chip.active {
+            background: #0f172a !important;
+            border-color: #0f172a !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+        }
+
+        /* Success */
+        @keyframes scaleIn { 0%{transform:scale(0);opacity:0;} 50%{transform:scale(1.2);} 100%{transform:scale(1);opacity:1;} }
+        #formSuccess svg { animation: scaleIn 0.5s ease-out; }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div id="cursor-ring"></div>
+    <div id="cursor-dot"></div>
+    <div id="cursor-arrow">
+        <svg viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L21 12L1 23V1Z" fill="white" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <!-- Navbar -->
+    <header class="site-header nav-top">
+        <div class="container glass-nav d-flex align-items-center justify-content-between py-2 px-4">
+            <a href="index.html" aria-label="NeuroNiv Home" class="text-decoration-none d-flex align-items-center gap-2">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#e879f9"/>
+                    <path d="M2 17L12 22L22 17" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="text-white fw-bold fs-5" style="letter-spacing: -0.05em;">NeuroNiv</span>
+            </a>
+            <nav class="d-none d-lg-flex gap-4">
+                <a href="index.html" class="nav-link text-decoration-none">Home</a>
+                <a href="about.html" class="nav-link text-decoration-none">About</a>
+                <a href="services.html" class="nav-link text-decoration-none">Services</a>
+                <a href="work.html" class="nav-link text-decoration-none">Work</a>
+                <a href="careers.html" class="nav-link text-decoration-none">Career</a>
+            </nav>
+            <div class="d-flex align-items-center gap-3">
+                <a href="contact.html" class="btn-primary-custom d-none d-lg-inline-flex" style="background-color: transparent; border-color: rgba(255,255,255,0.3); color: white;">
+                    Contact Us
+                </a>
+                <button class="btn text-white d-lg-none" aria-label="Open menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Form Section -->
+    <main style="min-height: 100vh; padding-top: 140px; padding-bottom: 80px;">
+        <div class="container">
+
+            <!-- 5-Step Engagement Journey -->
+            <div class="row justify-content-center mb-5 fade-up">
+                <div class="col-12 text-center mb-3">
+                    <span class="badge-custom d-inline-block mb-2">Our Process</span>
+                    <h2 class="text-white fs-3 fw-bold">How We Initiate Every Engagement</h2>
+                    <p class="text-white-50 small mx-auto" style="max-width: 500px;">From requirement discovery to architecture roadmap within 24 hours.</p>
+                </div>
+                <div class="col-12 col-xl-11">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 p-3 rounded-4" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px);">
+                        <div class="d-flex align-items-center gap-2">
+                            <span style="width:28px;height:28px;border-radius:50%;background:rgba(232,121,249,0.15);color:var(--color-primary);font-size:0.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;">1</span>
+                            <span class="text-white small fw-semibold">Choose Service</span>
+                        </div>
+                        <span class="text-white-50 d-none d-lg-inline">→</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span style="width:28px;height:28px;border-radius:50%;background:rgba(232,121,249,0.15);color:var(--color-primary);font-size:0.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;">2</span>
+                            <span class="text-white small fw-semibold">Describe Scope</span>
+                        </div>
+                        <span class="text-white-50 d-none d-lg-inline">→</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span style="width:28px;height:28px;border-radius:50%;background:rgba(232,121,249,0.15);color:var(--color-primary);font-size:0.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;">3</span>
+                            <span class="text-white small fw-semibold">Send Enquiry</span>
+                        </div>
+                        <span class="text-white-50 d-none d-lg-inline">→</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span style="width:28px;height:28px;border-radius:50%;background:rgba(232,121,249,0.15);color:var(--color-primary);font-size:0.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;">4</span>
+                            <span class="text-white small fw-semibold">Technical Review</span>
+                        </div>
+                        <span class="text-white-50 d-none d-lg-inline">→</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span style="width:28px;height:28px;border-radius:50%;background:rgba(232,121,249,0.15);color:var(--color-primary);font-size:0.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;">5</span>
+                            <span class="text-white small fw-semibold">Start Discussion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center g-5">
+
+                <!-- Left: Info -->
+                <div class="col-lg-5 text-center text-lg-start fade-up">
+                    <h1 class="text-white fw-bold mb-4" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; font-family: var(--font-heading);">
+                        Let's build <br/> something <span class="hand-font" style="color: var(--color-primary);">great<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                    </h1>
+                    <p class="text-white-50 fs-5 mb-5">
+                        Tell us about your project, timeline, and goals. Our engineering team will review it and get back to you within 24 hours.
+                    </p>
+                    
+                    <div class="d-flex flex-column gap-4">
+                        <div class="contact-info-item d-flex align-items-start gap-3">
+                            <div class="contact-icon-wrap">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
+                            <div>
+                                <h5 class="text-white fs-6 fw-bold mb-1">Email Us</h5>
+                                <a href="mailto:info@neuroniv.com" class="contact-link text-decoration-none">info@neuroniv.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-info-item d-flex align-items-start gap-3">
+                            <div class="contact-icon-wrap">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            </div>
+                            <div>
+                                <h5 class="text-white fs-6 fw-bold mb-1">Headquarters</h5>
+                                <p class="text-white-50 small mb-0">Rajkot, Gujarat, India</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item d-flex align-items-start gap-3">
+                            <div class="contact-icon-wrap">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <div>
+                                <h5 class="text-white fs-6 fw-bold mb-1">Response Time</h5>
+                                <p class="text-white-50 small mb-0">We typically respond within 24 hours</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="availability-badge mt-5">
+                        <span class="availability-dot"></span>
+                        <span class="text-white-50 small">Currently accepting new projects</span>
+                    </div>
+                </div>
+
+                <!-- Right: White Card Form -->
+                <div class="col-lg-7 fade-up" style="transition-delay: 0.1s;">
+                    <div class="contact-card-wrap">
+                        <h3 class="contact-card-title" id="formHeading">Tell us about your project</h3>
+
+                        <form id="contactForm" novalidate>
+                            <div class="contact-fields">
+
+                                <!-- Quick Service Selector Chips -->
+                                <div class="contact-field-group mb-1">
+                                    <label class="contact-label">SELECT YOUR SERVICE INTEREST</label>
+                                    <div class="d-flex flex-wrap gap-2" id="serviceChips">
+                                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill service-chip active" data-val="AI & Automation" style="font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.9rem;">AI &amp; Automation</button>
+                                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill service-chip" data-val="Web Development" style="font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.9rem;">Web Development</button>
+                                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill service-chip" data-val="Cloud & DevOps" style="font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.9rem;">Cloud &amp; DevOps</button>
+                                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill service-chip" data-val="Dedicated Team" style="font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.9rem;">Dedicated Team</button>
+                                    </div>
+                                </div>
+
+                                <!-- Full Name + Company -->
+                                <div class="contact-row">
+                                    <div class="contact-field-group">
+                                        <label for="fullName" class="contact-label">FULL NAME <span class="required-star">*</span></label>
+                                        <input type="text" class="contact-input" id="fullName" placeholder="John Doe" required>
+                                        <div class="field-error">Please enter your name.</div>
+                                    </div>
+                                    <div class="contact-field-group">
+                                        <label for="company" class="contact-label">COMPANY</label>
+                                        <input type="text" class="contact-input" id="company" placeholder="Acme Inc.">
+                                    </div>
+                                </div>
+
+                                <!-- Business Email -->
+                                <div class="contact-field-group">
+                                    <label for="email" class="contact-label">BUSINESS EMAIL <span class="required-star">*</span></label>
+                                    <input type="email" class="contact-input" id="email" placeholder="john@company.com" required>
+                                    <div class="field-error">Please enter a valid email.</div>
+                                </div>
+
+                                <!-- What Do You Need -->
+                                <div class="contact-field-group">
+                                    <label for="projectType" class="contact-label">SERVICE CATEGORY</label>
+                                    <div class="contact-select-wrap">
+                                        <select class="contact-input contact-select" id="projectType">
+                                            <option value="AI & Automation">AI &amp; Automation</option>
+                                            <option value="Web Development">Web Development</option>
+                                            <option value="Data & Web Scraping">Data &amp; Web Scraping</option>
+                                            <option value="Cloud & DevOps">Cloud &amp; DevOps</option>
+                                            <option value="Mobile App Development">Mobile App Development</option>
+                                            <option value="Dedicated Team">Dedicated Team</option>
+                                            <option value="Other / Not sure yet">Other / Not sure yet</option>
+                                        </select>
+                                        <svg class="select-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                </div>
+
+                                <!-- Project Details -->
+                                <div class="contact-field-group">
+                                    <label for="message" class="contact-label">PROJECT DETAILS <span class="required-star">*</span></label>
+                                    <textarea class="contact-input contact-textarea" id="message" rows="5" placeholder="What are you building? Timeline, budget range, and goals help us prepare a better reply." required></textarea>
+                                    <div class="field-error">Please describe your project.</div>
+                                </div>
+
+                                <!-- Submit -->
+                                <button type="submit" id="submitBtn" class="contact-submit-btn">
+                                    <span class="submit-text">Send Message</span>
+                                    <span class="submit-loading d-none">
+                                        <svg class="spinner-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="30 60"/></svg>
+                                        Sending...
+                                    </span>
+                                    <svg class="submit-plane" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                </button>
+                                <p class="contact-privacy-note">We usually reply within 24 hours. Your information stays private.</p>
+                            </div>
+                        </form>
+
+                        <!-- Success Message -->
+                        <div id="formSuccess" class="d-none text-center py-5">
+                            <div class="mb-4">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-5"></path></svg>
+                            </div>
+                            <h3 class="fw-bold mb-2" style="color:#111827;">Message Sent!</h3>
+                            <p class="mb-4" style="color:#6b7280;">Thank you for reaching out. Our team will review your project details and get back to you within 24 hours.</p>
+                            <button type="button" class="btn btn-outline-dark rounded-pill px-4" onclick="resetForm()">Send Another Message</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-5 border-top" style="border-color: rgba(255,255,255,0.1) !important; background-color: var(--color-bg-base);">
+        <div class="container fade-up">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="index.html" aria-label="NeuroNiv Home" class="text-decoration-none d-flex align-items-center gap-2 mb-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#e879f9"/>
+                            <path d="M2 17L12 22L22 17" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="text-white fw-bold fs-5" style="letter-spacing: -0.05em;">NeuroNiv</span>
+                    </a>
+                    <p class="text-white-50 small pe-md-4">NeuroNiv is an AI-Native Product Engineering Studio. We help growing companies build scalable, production-ready software.</p>
+                </div>
+                <div class="col-md-2 offset-md-2">
+                    <h5 class="text-white fs-6 mb-3">Company</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="about.html" class="text-white-50 text-decoration-none">About Us</a></li>
+                        <li><a href="careers.html" class="text-white-50 text-decoration-none">Careers</a></li>
+                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5 class="text-white fs-6 mb-3">Expertise</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="index.html#ai-models-section" class="text-white-50 text-decoration-none">AI &amp; LLM Models</a></li>
+                        <li><a href="index.html#web-platform-section" class="text-white-50 text-decoration-none">Web Platforms</a></li>
+                        <li><a href="index.html#ai-marketing-section" class="text-white-50 text-decoration-none">AI Marketing</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Cloud Native</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Data Platforms</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5 class="text-white fs-6 mb-3">Follow Us</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#" class="text-white-50 text-decoration-none">LinkedIn</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Twitter (X)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-top mt-5 pt-4 text-center text-white-50 small" style="border-color: rgba(255,255,255,0.1) !important;">
+                &copy; 2026 NeuroNiv LLC. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+
+    <script>
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn   = document.getElementById('submitBtn');
+        const formSuccess = document.getElementById('formSuccess');
+
+        function showError(input, show) {
+            const group = input.closest('.contact-field-group');
+            if (!group) return;
+            group.classList.toggle('has-error', show);
+            input.classList.toggle('is-invalid', show);
+        }
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+
+                const nameField = document.getElementById('fullName');
+                if (!nameField.value.trim()) { showError(nameField, true); isValid = false; }
+                else showError(nameField, false);
+
+                const emailField = document.getElementById('email');
+                const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailField.value.trim() || !emailRx.test(emailField.value)) { showError(emailField, true); isValid = false; }
+                else showError(emailField, false);
+
+                const msgField = document.getElementById('message');
+                if (!msgField.value.trim()) { showError(msgField, true); isValid = false; }
+                else showError(msgField, false);
+
+                if (!isValid) return;
+
+                submitBtn.querySelector('.submit-text').classList.add('d-none');
+                submitBtn.querySelector('.submit-plane').classList.add('d-none');
+                submitBtn.querySelector('.submit-loading').classList.remove('d-none');
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    contactForm.classList.add('d-none');
+                    document.getElementById('formHeading').classList.add('d-none');
+                    formSuccess.classList.remove('d-none');
+                }, 1500);
+            });
+
+            contactForm.querySelectorAll('.contact-input').forEach(inp => {
+                inp.addEventListener('input', () => showError(inp, false));
+            });
+        }
+
+        // Service Chips selector
+        document.querySelectorAll('.service-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                document.querySelectorAll('.service-chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                const val = this.getAttribute('data-val');
+                const select = document.getElementById('projectType');
+                if (select && val) {
+                    select.value = val;
+                }
+            });
+        });
+
+        function resetForm() {
+            contactForm.reset();
+            contactForm.querySelectorAll('.contact-field-group').forEach(g => g.classList.remove('has-error'));
+            contactForm.querySelectorAll('.contact-input').forEach(i => i.classList.remove('is-invalid'));
+            submitBtn.querySelector('.submit-text').classList.remove('d-none');
+            submitBtn.querySelector('.submit-plane').classList.remove('d-none');
+            submitBtn.querySelector('.submit-loading').classList.add('d-none');
+            submitBtn.disabled = false;
+            contactForm.classList.remove('d-none');
+            document.getElementById('formHeading').classList.remove('d-none');
+            formSuccess.classList.add('d-none');
+        }
+    </script>
+</body>
+</html>

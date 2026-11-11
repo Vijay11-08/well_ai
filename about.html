@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About NeuroNiv — AI-Native Product Engineering Studio</title>
+    <meta name="description" content="Learn about NeuroNiv, an AI-native product engineering studio. We help startups and enterprises build AI models, web platforms, and marketing systems." />
+    <meta property="og:title" content="About NeuroNiv — AI-Native Product Engineering Studio" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+        /* ── Services Showcase ─────────────────────────────── */
+        .services-section {
+            background: #f5f5f7;
+            padding: 6rem 0;
+            overflow: hidden;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .services-label {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            background: rgba(232, 121, 249, 0.1);
+            border: 1px solid rgba(232, 121, 249, 0.25);
+            border-radius: 9999px;
+            padding: 0.35rem 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .services-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+
+        .services-subtitle {
+            font-size: 1.05rem;
+            color: #6b7280;
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ── Card Slider Track ─────────────────────────────── */
+        .services-slider-wrapper {
+            position: relative;
+            padding: 1rem 0 2.5rem;
+        }
+
+        .services-track {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 460px;
+            align-items: stretch;
+        }
+
+        /* ── Service Card — Pure CSS Hover Accordion ───────── */
+        .service-card {
+            position: relative;
+            flex: 1 1 0;
+            min-width: 80px;
+            height: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: flex 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        box-shadow 0.4s ease,
+                        border-radius 0.3s ease;
+            background: #1a1a2e;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        /* Default: first card expanded when nothing hovered */
+        .services-track:not(:hover) .service-card:first-child {
+            flex: 0 0 560px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+        .services-track:not(:hover) .service-card:not(:first-child) {
+            flex: 1 1 0;
+        }
+
+        /* On track hover: all collapse, hovered one expands */
+        .services-track:hover .service-card {
+            flex: 1 1 0;
+        }
+        .services-track:hover .service-card:hover {
+            flex: 0 0 560px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        /* Background image */
+        .service-card__bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+        }
+        .service-card:hover .service-card__bg {
+            transform: scale(1.04);
+        }
+
+        /* Dark overlay gradient */
+        .service-card__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(0,0,0,0.88) 0%,
+                rgba(0,0,0,0.45) 45%,
+                rgba(0,0,0,0.18) 100%
+            );
+            transition: background 0.4s ease;
+        }
+        /* Overlay adjusts for expanded card */
+        .services-track:not(:hover) .service-card:first-child .service-card__overlay,
+        .services-track:hover .service-card:hover .service-card__overlay {
+            background: linear-gradient(
+                to top,
+                rgba(0,0,0,0.92) 0%,
+                rgba(0,0,0,0.55) 50%,
+                rgba(0,0,0,0.2) 100%
+            );
+        }
+
+        /* Icon bubble — visible in collapsed, hidden in expanded */
+        .service-card__icon-bubble {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.3s ease 0.1s, transform 0.3s ease;
+            z-index: 3;
+        }
+        /* Hide icon when card is expanded */
+        .services-track:not(:hover) .service-card:first-child .service-card__icon-bubble,
+        .services-track:hover .service-card:hover .service-card__icon-bubble {
+            opacity: 0;
+            transform: translateX(-50%) scale(0.6);
+            pointer-events: none;
+            transition-delay: 0s;
+        }
+
+        /* Collapsed title — rotated vertically, shown only on narrow cards */
+        .service-card__title-collapsed {
+            position: absolute;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-90deg);
+            transform-origin: center center;
+            white-space: nowrap;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.75);
+            opacity: 1;
+            transition: opacity 0.25s ease 0.15s;
+            z-index: 3;
+        }
+        /* Hide rotated title when expanded */
+        .services-track:not(:hover) .service-card:first-child .service-card__title-collapsed,
+        .services-track:hover .service-card:hover .service-card__title-collapsed {
+            opacity: 0;
+            pointer-events: none;
+            transition-delay: 0s;
+        }
+
+        /* Expanded content — shown only in expanded card */
+        .service-card__content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            pointer-events: none;
+            z-index: 3;
+        }
+        /* Show content when expanded */
+        .services-track:not(:hover) .service-card:first-child .service-card__content,
+        .services-track:hover .service-card:hover .service-card__content {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            transition-delay: 0.15s;
+        }
+
+        .service-card__tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(232, 121, 249, 0.2);
+            border: 1px solid rgba(232, 121, 249, 0.4);
+            color: #f0abfc;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.85rem;
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+        }
+        .service-card__tag svg { flex-shrink: 0; }
+
+        .service-card__name {
+            font-size: 1.55rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.02em;
+        }
+
+        .service-card__desc {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.72);
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+
+        .service-card__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(232, 121, 249, 0.15);
+            border: 1px solid rgba(232, 121, 249, 0.35);
+            color: #f0abfc;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+        }
+        .service-card__badge::before {
+            content: '✓';
+            font-size: 0.75rem;
+        }
+
+        /* ── Responsive ─────────────────────────────────────── */
+        @media (max-width: 1100px) {
+            .services-track {
+                max-width: 100%;
+                padding: 0 1.5rem;
+            }
+            .services-track:not(:hover) .service-card:first-child,
+            .services-track:hover .service-card:hover {
+                flex: 0 0 440px;
+            }
+        }
+        @media (max-width: 768px) {
+            .services-track {
+                height: 400px;
+                gap: 0.5rem;
+                padding: 0 1rem;
+            }
+            .service-card { min-width: 55px; }
+            .services-track:not(:hover) .service-card:first-child,
+            .services-track:hover .service-card:hover {
+                flex: 0 0 280px;
+            }
+            .service-card__name { font-size: 1.15rem; }
+            .service-card__desc { font-size: 0.8rem; }
+        }
+
+        /* ── Values Grid ───────────────────────────────────── */
+        .values-section {
+            padding: 6rem 0;
+            background: var(--color-bg-mid);
+        }
+
+        .value-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .value-card:hover {
+            background: rgba(232,121,249,0.08);
+            border-color: rgba(232,121,249,0.3);
+            transform: translateY(-4px);
+        }
+
+        .value-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: rgba(232,121,249,0.12);
+            border: 1px solid rgba(232,121,249,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            color: var(--color-primary);
+        }
+
+        /* ── Stats Counter Row ─────────────────────────────── */
+        .stats-band {
+            background: var(--color-bg-base);
+            padding: 4rem 0;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+        .stat-num {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #e879f9, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.55);
+            margin-top: 0.4rem;
+            font-weight: 500;
+        }
+
+        /* ── Responsive ────────────────────────────────────── */
+        @media (max-width: 1100px) {
+            .services-track {
+                padding: 0 1.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .service-card { flex: 0 0 240px; height: 380px; }
+            .service-card.active { flex: 0 0 300px; }
+            .service-card__name { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-ring"></div>
+    <div id="cursor-dot"></div>
+    <div id="cursor-arrow">
+        <svg viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L21 12L1 23V1Z" fill="white" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <!-- Navbar -->
+    <header class="site-header nav-top">
+        <div class="container glass-nav d-flex align-items-center justify-content-between py-2 px-4">
+            <a href="index.html" aria-label="NeuroNiv Home" class="text-decoration-none d-flex align-items-center gap-2">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#e879f9"/>
+                    <path d="M2 17L12 22L22 17" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="text-white fw-bold fs-5" style="letter-spacing: -0.05em;">NeuroNiv</span>
+            </a>
+            <nav class="d-none d-lg-flex gap-4">
+                <a href="index.html" class="nav-link text-decoration-none">Home</a>
+                <a href="about.html" class="nav-link text-white text-decoration-none">About</a>
+                <a href="services.html" class="nav-link text-decoration-none">Services</a>
+                <a href="work.html" class="nav-link text-decoration-none">Work</a>
+                <a href="careers.html" class="nav-link text-decoration-none">Career</a>
+            </nav>
+            <div class="d-flex align-items-center gap-3">
+                <a href="contact.html" class="btn-primary-custom d-none d-lg-inline-flex">
+                    Contact Us
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                </a>
+                <button class="btn text-white d-lg-none" aria-label="Open menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Hero -->
+    <main class="hero-section" style="min-height: 80vh;">
+        <div class="container text-center pt-5">
+            <h1 class="hero-title fade-up text-white mb-4" style="font-size: clamp(2.2rem, 5vw, 3.6rem);">
+                We build AI-native products with senior engineering 
+                <span class="hand-font text-white">discipline<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+            </h1>
+            <p class="fade-up text-white-50 fs-5 fw-medium mx-auto mb-3" style="max-width: 800px;">
+                NeuroNiv is an AI-native product engineering studio built for teams that need more than code. We help companies make better technical decisions, design practical architecture, and build software that is ready for real users.
+            </p>
+            <p class="fade-up text-white-50 mx-auto mb-5" style="max-width: 800px;">
+                Our work spans AI products, SaaS platforms, internal tools, data systems, cloud infrastructure, modernization, technical leadership, and engineering team extension.
+            </p>
+            <div class="fade-up d-flex flex-wrap justify-content-center gap-3 mb-5">
+                <a href="contact.html" class="btn-outline-custom" style="background-color: black; border-color: rgba(255,255,255,0.1);">
+                    Plan Your Next Build
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                </a>
+                <a href="work.html" class="btn-outline-custom text-white">
+                    Explore Our Services
+                </a>
+            </div>
+            
+            <div class="fade-up d-flex align-items-center justify-content-center gap-4 text-white-50 small mt-4">
+                <span class="d-flex align-items-center gap-2">
+                    <span class="rounded-circle d-inline-block" style="width:6px; height:6px; background-color: var(--color-primary); box-shadow: 0 0 8px var(--color-primary);"></span>
+                    Seattle, WA
+                </span>
+                <span class="d-flex align-items-center gap-2">
+                    <span class="rounded-circle d-inline-block" style="width:6px; height:6px; background-color: var(--color-primary); box-shadow: 0 0 8px var(--color-primary);"></span>
+                    Ahmedabad, India
+                </span>
+                <span class="text-white-50">Worldwide Delivery</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Stats Band -->
+    <section class="stats-band fade-up">
+        <div class="container">
+            <div class="row g-3 justify-content-center">
+                <div class="col-6 col-md-3 stat-item">
+                    <div class="stat-num" data-target="85">0</div>
+                    <div class="stat-label">Apps Launched</div>
+                </div>
+                <div class="col-6 col-md-3 stat-item">
+                    <div class="stat-num" data-target="120">0</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="col-6 col-md-3 stat-item">
+                    <div class="stat-num" data-target="50">0</div>
+                    <div class="stat-label">AI Models Built</div>
+                </div>
+                <div class="col-6 col-md-3 stat-item">
+                    <div class="stat-num" data-target="98">0</div>
+                    <div class="stat-label">Client Satisfaction %</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ Services Showcase ══════════════════════════════ -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-header fade-up">
+                <span class="services-label">What We Do</span>
+                <h2 class="services-title">
+                    End-to-end expertise across<br>
+                    every digital discipline
+                </h2>
+                <p class="services-subtitle">
+                    From pixel-perfect interfaces to production AI systems — we cover the full stack of modern product development so you don't have to stitch together multiple agencies.
+                </p>
+            </div>
+        </div>
+
+        <div class="services-slider-wrapper fade-up">
+            <!-- Track -->
+            <div class="services-track" id="servicesTrack">
+
+                <!-- Card 1: UI/UX Design -->
+                <div class="service-card" data-index="0">
+                    <div class="service-card__bg" style="background-image: url('assets/images/uiux-design.png');"></div>
+                    <div class="service-card__overlay"></div>
+                    <!-- Collapsed icon -->
+                    <div class="service-card__icon-bubble">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    </div>
+                    <span class="service-card__title-collapsed">UI/UX Design</span>
+                    <!-- Expanded content -->
+                    <div class="service-card__content">
+                        <span class="service-card__tag">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                            Design
+                        </span>
+                        <h3 class="service-card__name">UI/UX Design</h3>
+                        <p class="service-card__desc">
+                            Crafting intuitive, beautiful interfaces that convert. From user research and wireframes to high-fidelity Figma prototypes — we design experiences users love and products that perform.
+                        </p>
+                        <span class="service-card__badge">200+ Screens Designed</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: App Development -->
+                <div class="service-card" data-index="1">
+                    <div class="service-card__bg" style="background-image: url('assets/images/app-development.png');"></div>
+                    <div class="service-card__overlay"></div>
+                    <div class="service-card__icon-bubble">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                    </div>
+                    <span class="service-card__title-collapsed">App Development</span>
+                    <div class="service-card__content">
+                        <span class="service-card__tag">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                            Mobile
+                        </span>
+                        <h3 class="service-card__name">App Development</h3>
+                        <p class="service-card__desc">
+                            Building native and cross-platform mobile experiences that perform flawlessly on iOS and Android. React Native, Flutter, and Swift — we ship apps that users keep coming back to.
+                        </p>
+                        <span class="service-card__badge">85+ Apps Launched</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Web Development -->
+                <div class="service-card" data-index="2">
+                    <div class="service-card__bg" style="background-image: url('assets/images/web-development-service.png');"></div>
+                    <div class="service-card__overlay"></div>
+                    <div class="service-card__icon-bubble">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <span class="service-card__title-collapsed">Web Development</span>
+                    <div class="service-card__content">
+                        <span class="service-card__tag">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                            Web
+                        </span>
+                        <h3 class="service-card__name">Web Development</h3>
+                        <p class="service-card__desc">
+                            Scalable, lightning-fast web platforms built with Next.js, React, and Node.js. From SaaS dashboards to high-traffic e-commerce sites — engineered for performance and growth.
+                        </p>
+                        <span class="service-card__badge">60+ Platforms Shipped</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Artificial Intelligence -->
+                <div class="service-card" data-index="3">
+                    <div class="service-card__bg" style="background-image: url('assets/images/ai-models.png');"></div>
+                    <div class="service-card__overlay"></div>
+                    <div class="service-card__icon-bubble">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                    </div>
+                    <span class="service-card__title-collapsed">Artificial Intelligence</span>
+                    <div class="service-card__content">
+                        <span class="service-card__tag">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                            AI & ML
+                        </span>
+                        <h3 class="service-card__name">Artificial Intelligence</h3>
+                        <p class="service-card__desc">
+                            Production-ready AI systems — LLMs, RAG pipelines, fine-tuned models, and autonomous agents. We take AI from prototype to real-world deployment that actually works at scale.
+                        </p>
+                        <span class="service-card__badge">50+ AI Models Deployed</span>
+                    </div>
+                </div>
+
+                <!-- Card 5: Digital Marketing -->
+                <div class="service-card" data-index="4">
+                    <div class="service-card__bg" style="background-image: url('assets/images/ai-marketing.png');"></div>
+                    <div class="service-card__overlay"></div>
+                    <div class="service-card__icon-bubble">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    <span class="service-card__title-collapsed">Digital Marketing</span>
+                    <div class="service-card__content">
+                        <span class="service-card__tag">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                            Marketing
+                        </span>
+                        <h3 class="service-card__name">Digital Marketing</h3>
+                        <p class="service-card__desc">
+                            AI-powered marketing intelligence — lead scoring, SEO automation, campaign optimization, and personalization engines. Turn data into growth with systems that get smarter over time.
+                        </p>
+                        <span class="service-card__badge">3× Avg. Lead Growth</span>
+                    </div>
+                </div>
+
+            </div><!-- /track -->
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="py-5" style="background-color: #F5F5F7;">
+        <div class="container py-5 fade-up">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <span class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem; letter-spacing: 0.1em;">From the Founder</span>
+                    <h2 class="fs-1 fw-bold text-dark mt-3 mb-4">
+                        We build software with the discipline of senior engineering teams and the
+                        <span class="hand-font" style="color: var(--color-primary);">speed<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>
+                        growing companies need to move.
+                    </h2>
+                    <p class="text-muted fs-5 mb-3">
+                        After years of building and leading complex software systems, Khelan saw the same pattern across growing companies: ambitious product ideas often struggled because of unclear architecture, technical debt, slow delivery, or a lack of senior engineering direction.
+                    </p>
+                    <p class="text-muted fs-5">
+                        NeuroNiv was built to help teams turn product ideas, AI opportunities, and operational workflows into secure, scalable software with practical strategy and hands-on execution.
+                    </p>
+                </div>
+                <div class="col-lg-5 text-center">
+                    <img src="assets/images/founder-portrait.png" class="img-fluid rounded-4 shadow mb-3 object-fit-cover" alt="Khelan Patel — Founder & CTO" style="height: 400px; width: 100%;" loading="lazy" decoding="async">
+                    <h4 class="fw-bold mb-0">Khelan Patel</h4>
+                    <p class="text-muted small">Founder &amp; CTO</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section fade-up">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge-custom d-inline-block mb-3">Our Values</span>
+                <h2 class="text-white fw-bold fs-1" style="letter-spacing: -0.03em;">
+                    Principles that drive<br>
+                    <span class="hand-font">everything<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span> we build
+                </h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        </div>
+                        <h4 class="text-white fw-bold mb-2" style="font-size: 1.1rem;">Speed with Discipline</h4>
+                        <p class="text-white-50 small mb-0">We move fast without breaking things. Every sprint is intentional, every decision is architecturally sound.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h4 class="text-white fw-bold mb-2" style="font-size: 1.1rem;">Security First</h4>
+                        <p class="text-white-50 small mb-0">Security isn't an afterthought. We bake it into every system from day one — architecture, code, and infrastructure.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                        </div>
+                        <h4 class="text-white fw-bold mb-2" style="font-size: 1.1rem;">Radical Transparency</h4>
+                        <p class="text-white-50 small mb-0">No surprises. We communicate clearly, share progress openly, and raise blockers immediately — always.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <h4 class="text-white fw-bold mb-2" style="font-size: 1.1rem;">AI-Native Thinking</h4>
+                        <p class="text-white-50 small mb-0">Every product starts with the question: how can AI make this smarter? Intelligence isn't bolted on — it's foundational.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="py-5 bg-white text-center">
+        <div class="container py-5 fade-up">
+            <span class="text-muted text-uppercase fw-bold mb-3 d-block" style="font-size: 0.7rem; letter-spacing: 0.1em;">Our Mission</span>
+            <h2 class="fs-1 fw-bold text-dark mb-4 mx-auto" style="max-width: 900px; line-height: 1.3;">
+                To help ambitious teams build secure, scalable software from strategy to
+                <span class="hand-font" style="color: var(--color-primary);">launch<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+            </h2>
+            <p class="text-muted fs-5 mx-auto" style="max-width: 700px;">
+                NeuroNiv exists to help startups, product teams, and growing companies move from uncertainty to execution. We bring senior engineering, AI-native thinking, practical architecture, and clear delivery into every engagement.
+            </p>
+        </div>
+    </section>
+
+    <!-- AI-First Vision Section -->
+    <section class="py-5" style="background-color: var(--color-bg-mid);">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 fade-up">
+                    <span class="badge-custom d-inline-block mb-4">Our AI-First Approach</span>
+                    <h2 class="text-white fs-1 fw-bold mb-4" style="line-height: 1.2;">
+                        We build with AI at the
+                        <span class="hand-font">core<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>,
+                        not as an add-on.
+                    </h2>
+                    <p class="text-white-50 fs-5 mb-5">
+                        Every system we design starts with the question: how can AI make this smarter, faster, and more reliable? From production LLM pipelines to intelligent marketing systems and AI-optimized web platforms, we build products that learn.
+                    </p>
+                    <div class="d-flex flex-column gap-4">
+                        <div class="d-flex align-items-start gap-3">
+                            <div style="width:36px; height:36px; flex-shrink:0; background: rgba(232,121,249,0.15); border-radius:10px; display:flex; align-items:center; justify-content:center;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-white fw-semibold">AI Models &amp; Agents</div>
+                                <div class="text-white-50 small">LLMs, RAG, fine-tuning, and autonomous multi-agent systems built for production.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start gap-3">
+                            <div style="width:36px; height:36px; flex-shrink:0; background: rgba(232,121,249,0.15); border-radius:10px; display:flex; align-items:center; justify-content:center;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-white fw-semibold">AI-Optimized Web Platforms</div>
+                                <div class="text-white-50 small">Web systems designed for performance, SEO, and AI-driven personalization.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start gap-3">
+                            <div style="width:36px; height:36px; flex-shrink:0; background: rgba(232,121,249,0.15); border-radius:10px; display:flex; align-items:center; justify-content:center;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-white fw-semibold">AI Marketing Intelligence</div>
+                                <div class="text-white-50 small">Lead scoring, campaign automation, and personalization engines powered by data.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-up" style="transition-delay: 0.15s;">
+                    <div class="rounded-4 overflow-hidden shadow-lg" style="border: 1px solid rgba(232,121,249,0.2);">
+                        <img src="assets/images/ai-models.png" alt="AI neural network and model architecture" class="img-fluid w-100" loading="lazy" decoding="async" style="display: block; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 border-top" style="border-color: rgba(255,255,255,0.1) !important;">
+        <div class="container fade-up">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="index.html" aria-label="NeuroNiv Home" class="text-decoration-none d-flex align-items-center gap-2 mb-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#e879f9"/>
+                            <path d="M2 17L12 22L22 17" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="text-white fw-bold fs-5" style="letter-spacing: -0.05em;">NeuroNiv</span>
+                    </a>
+                    <p class="text-white-50 small pe-md-4">NeuroNiv is an AI-Native Product Engineering Studio. We help growing companies build scalable, production-ready software.</p>
+                </div>
+                <div class="col-md-2 offset-md-2">
+                    <h5 class="text-white fs-6 mb-3">Company</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="about.html" class="text-white-50 text-decoration-none">About Us</a></li>
+                        <li><a href="careers.html" class="text-white-50 text-decoration-none">Careers</a></li>
+                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5 class="text-white fs-6 mb-3">Expertise</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="index.html#ai-models-section" class="text-white-50 text-decoration-none">AI &amp; LLM Models</a></li>
+                        <li><a href="index.html#web-platform-section" class="text-white-50 text-decoration-none">Web Platforms</a></li>
+                        <li><a href="index.html#ai-marketing-section" class="text-white-50 text-decoration-none">AI Marketing</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Cloud Native</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Data Platforms</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5 class="text-white fs-6 mb-3">Follow Us</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#" class="text-white-50 text-decoration-none">LinkedIn</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Twitter (X)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-top mt-5 pt-4 text-center text-white-50 small" style="border-color: rgba(255,255,255,0.1) !important;">
+                &copy; 2026 NeuroNiv LLC. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+
+    <script>
+    // ── Services section is now pure CSS hover (no JS needed) ──
+
+    // ── Stats Counter ─────────────────────────────────────
+    (function () {
+        const nums = document.querySelectorAll('.stat-num[data-target]');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = parseInt(el.dataset.target, 10);
+                let current = 0;
+                const step = Math.ceil(target / 60);
+                const timer = setInterval(() => {
+                    current = Math.min(current + step, target);
+                    el.textContent = current + (el.dataset.target === '98' ? '%' : '+');
+                    if (current >= target) clearInterval(timer);
+                }, 24);
+                observer.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+        nums.forEach(n => observer.observe(n));
+    })();
+    </script>
+</body>
+</html>

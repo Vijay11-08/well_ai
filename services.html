@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Services | NeuroNiv — E-Commerce, Social Media, Ads & Branding</title>
+    <meta name="description" content="NeuroNiv offers expert services in E-Commerce, Social Media Marketing, Meta Ads, Google Ads, Content Creation, and Branding Strategies to accelerate your digital growth." />
+    <meta property="og:title" content="Services | NeuroNiv — Digital Growth & Marketing" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+        /* ══════════════════════════════════════════════════
+           SERVICES PAGE — Scroll Reveal / Release Cards
+           ══════════════════════════════════════════════════ */
+
+        .services-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        /* ── Individual Service Card ─────────────────────── */
+        .service-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 85vh;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .service-card:last-child {
+            border-bottom: none;
+        }
+
+        /* Alternate: even cards flip the image to the left */
+        .service-card:nth-child(even) {
+            direction: rtl;
+        }
+        .service-card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        /* ── Image side ──────────────────────────────────── */
+        .service-card__media {
+            position: relative;
+            height: 100%;
+            min-height: 450px;
+            overflow: hidden;
+        }
+        .service-card__media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: scale(1.12);
+            will-change: transform;
+        }
+        .service-card.revealed .service-card__media img {
+            transform: scale(1);
+        }
+
+        /* Gradient overlay on image */
+        .service-card__media::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+        /* Odd cards: gradient fades from right */
+        .service-card:nth-child(odd) .service-card__media::after {
+            background: linear-gradient(to right, transparent 50%, var(--color-bg-base) 100%);
+        }
+        /* Even cards: gradient fades from left */
+        .service-card:nth-child(even) .service-card__media::after {
+            background: linear-gradient(to left, transparent 50%, var(--color-bg-base) 100%);
+        }
+
+        /* ── Content side ────────────────────────────────── */
+        .service-card__content {
+            padding: 4rem 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card__tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin-bottom: 1.25rem;
+        }
+        .service-card__tag .tag-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            box-shadow: 0 0 10px var(--color-primary);
+        }
+
+        .service-card__title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.25rem;
+        }
+
+        .service-card__desc {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.05rem;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+            max-width: 480px;
+        }
+
+        .service-card__features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+        .service-card__features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: rgba(255,255,255,0.75);
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+        .service-card__features .check-icon {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+        }
+        .service-card__features .check-icon svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .service-card__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.8rem;
+            background: #ffffff;
+            color: #000000;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            width: fit-content;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .service-card__cta:hover {
+            background: #000000;
+            color: #ffffff;
+            box-shadow: 0 8px 30px rgba(232,121,249,0.25);
+            transform: translateY(-2px);
+        }
+        .service-card__cta svg {
+            transition: transform 0.25s ease;
+        }
+        .service-card__cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* ══════════════════════════════════════════════════
+           SCROLL REVEAL & RELEASE ANIMATIONS
+           ══════════════════════════════════════════════════ */
+
+        /* — Initially hidden state — */
+        .service-card__content .service-card__tag,
+        .service-card__content .service-card__title,
+        .service-card__content .service-card__desc,
+        .service-card__content .service-card__features li,
+        .service-card__content .service-card__cta {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .service-card__media {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .service-card:nth-child(even) .service-card__media {
+            transform: translateX(60px);
+        }
+
+        /* — Revealed state — */
+        .service-card.revealed .service-card__media {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .service-card.revealed .service-card__tag {
+            opacity: 1; transform: translateY(0);
+            transition-delay: 0.1s;
+        }
+        .service-card.revealed .service-card__title {
+            opacity: 1; transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+        .service-card.revealed .service-card__desc {
+            opacity: 1; transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+        .service-card.revealed .service-card__features li:nth-child(1) {
+            opacity: 1; transform: translateY(0); transition-delay: 0.35s;
+        }
+        .service-card.revealed .service-card__features li:nth-child(2) {
+            opacity: 1; transform: translateY(0); transition-delay: 0.4s;
+        }
+        .service-card.revealed .service-card__features li:nth-child(3) {
+            opacity: 1; transform: translateY(0); transition-delay: 0.45s;
+        }
+        .service-card.revealed .service-card__cta {
+            opacity: 1; transform: translateY(0);
+            transition-delay: 0.55s;
+        }
+
+        /* ── Card counter / number badge ────────────────── */
+        .service-card__number {
+            position: absolute;
+            top: 2rem;
+            font-family: var(--font-heading);
+            font-size: 7rem;
+            font-weight: 900;
+            line-height: 1;
+            color: rgba(255,255,255,0.03);
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+        }
+        .service-card:nth-child(odd) .service-card__number {
+            right: 2rem;
+        }
+        .service-card:nth-child(even) .service-card__number {
+            left: 2rem;
+        }
+
+        /* ── Alternating accent color per card ───────────── */
+        .service-card:nth-child(1) { --card-accent: #e879f9; }
+        .service-card:nth-child(2) { --card-accent: #60a5fa; }
+        .service-card:nth-child(3) { --card-accent: #34d399; }
+        .service-card:nth-child(4) { --card-accent: #f472b6; }
+        .service-card:nth-child(5) { --card-accent: #fbbf24; }
+        .service-card:nth-child(6) { --card-accent: #a78bfa; }
+
+        .service-card .tag-dot {
+            background: var(--card-accent) !important;
+            box-shadow: 0 0 10px var(--card-accent) !important;
+        }
+        .service-card .service-card__tag {
+            color: var(--card-accent);
+        }
+
+        /* ── Progress indicator (side bar) ───────────────── */
+        .services-progress {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .services-progress__dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 1.5px solid rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .services-progress__dot.active {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 12px var(--color-primary);
+            transform: scale(1.3);
+        }
+
+        /* ── Responsive ──────────────────────────────────── */
+        @media (max-width: 991px) {
+            .service-card {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+            .service-card:nth-child(even) {
+                direction: ltr;
+            }
+            .service-card__media {
+                min-height: 300px;
+            }
+            .service-card__content {
+                padding: 2.5rem 1.5rem;
+            }
+            .service-card__media::after {
+                background: linear-gradient(to bottom, transparent 40%, var(--color-bg-base) 100%) !important;
+            }
+            .services-progress {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .service-card__media {
+                min-height: 220px;
+            }
+            .service-card__content {
+                padding: 2rem 1.25rem;
+            }
+            .service-card__number {
+                font-size: 4rem;
+            }
+        }
+
+        /* ── Hero area for services ──────────────────────── */
+        .services-hero {
+            min-height: 55vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 140px;
+            padding-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .services-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, var(--color-bg-base));
+            pointer-events: none;
+        }
+        /* ── Bounce scroll animation ─────────────────────── */
+        @keyframes bounce-scroll {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(8px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="site-header nav-top">
+        <div class="container glass-nav d-flex align-items-center justify-content-between py-2 px-4">
+            <a href="index.html" aria-label="NeuroNiv Home" class="text-decoration-none d-flex align-items-center gap-2">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#e879f9"/>
+                    <path d="M2 17L12 22L22 17" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="text-white fw-bold fs-5" style="letter-spacing: -0.05em;">NeuroNiv</span>
+            </a>
+            <nav class="d-none d-lg-flex gap-4">
+                <a href="index.html" class="nav-link text-decoration-none">Home</a>
+                <a href="about.html" class="nav-link text-decoration-none">About</a>
+                <a href="services.html" class="nav-link text-white text-decoration-none">Services</a>
+                <a href="work.html" class="nav-link text-decoration-none">Work</a>
+                <a href="careers.html" class="nav-link text-decoration-none">Career</a>
+            </nav>
+            <div class="d-flex align-items-center gap-3">
+                <a href="contact.html" class="btn-primary-custom d-none d-lg-inline-flex">
+                    Contact Us
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                </a>
+                <button class="btn text-white d-lg-none nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Hero -->
+    <main class="services-hero">
+        <div class="container text-center position-relative" style="z-index: 2;">
+            <span class="badge-custom fade-up mb-4 d-inline-block">Our Services</span>
+            <h1 class="hero-title fade-up text-white mb-4">
+                Services that <span class="hand-font">drive growth<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+            </h1>
+            <p class="fade-up text-white-50 fs-5 fw-medium mx-auto mb-5" style="max-width: 800px;">
+                From building powerful e-commerce platforms to crafting data-driven marketing campaigns — we deliver end-to-end digital solutions that convert browsers into buyers.
+            </p>
+            <div class="fade-up">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" style="animation: bounce-scroll 2s ease-in-out infinite;">
+                    <path d="M12 5v14M19 12l-7 7-7-7"></path>
+                </svg>
+            </div>
+        </div>
+    </main>
+
+    <!-- Side Progress Dots -->
+    <div class="services-progress" id="servicesProgress">
+        <div class="services-progress__dot active" data-index="0"></div>
+        <div class="services-progress__dot" data-index="1"></div>
+        <div class="services-progress__dot" data-index="2"></div>
+        <div class="services-progress__dot" data-index="3"></div>
+        <div class="services-progress__dot" data-index="4"></div>
+        <div class="services-progress__dot" data-index="5"></div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         SERVICES STACK — Scroll Reveal & Release Cards
+         ══════════════════════════════════════════════════ -->
+    <section class="services-stack" id="servicesStack">
+
+        <!-- ─── 1. E-Commerce (Website & Marketplace) ─── -->
+        <div class="service-card" id="service-ecommerce">
+            <div class="service-card__media">
+                <img src="assets/images/ecommerce-service.png" alt="E-Commerce website and marketplace dashboard" loading="lazy" decoding="async">
+            </div>
+            <div class="service-card__content">
+                <span class="service-card__number">01</span>
+                <div class="service-card__tag">
+                    <span class="tag-dot"></span>
+                    E-Commerce
+                </div>
+                <h2 class="service-card__title">
+                    E-Commerce Websites & Marketplace Solutions
+                </h2>
+                <p class="service-card__desc">
+                    We build high-converting e-commerce platforms and marketplace ecosystems that handle millions of transactions seamlessly. From custom Shopify builds to fully bespoke marketplace architectures — we engineer storefronts that sell.
+                </p>
+                <ul class="service-card__features">
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Custom storefront design & development with conversion-optimized UX
+                    </li>
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Multi-vendor marketplace architecture with real-time inventory sync
+                    </li>
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Payment gateway integration, cart recovery & checkout optimization
+                    </li>
+                </ul>
+                <a href="contact.html" class="service-card__cta">
+                    Build My Store
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- ─── 2. Social Media Marketing ─────────────── -->
+        <div class="service-card" id="service-smm">
+            <div class="service-card__media">
+                <img src="assets/images/social-media-service.png" alt="Social media marketing analytics dashboard" loading="lazy" decoding="async">
+            </div>
+            <div class="service-card__content">
+                <span class="service-card__number">02</span>
+                <div class="service-card__tag">
+                    <span class="tag-dot"></span>
+                    Social Media Marketing
+                </div>
+                <h2 class="service-card__title">
+                    Social media strategies that build audiences
+                </h2>
+                <p class="service-card__desc">
+                    We don't just post — we engineer social presence. Our data-driven approach to social media marketing builds loyal communities, drives measurable engagement, and turns followers into paying customers across every platform.
+                </p>
+                <ul class="service-card__features">
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Platform-specific strategies for Instagram, LinkedIn, X, Facebook & TikTok
+                    </li>
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Community management, engagement analytics & growth optimization
+                    </li>
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Influencer collaboration strategy & campaign performance tracking
+                    </li>
+                </ul>
+                <a href="contact.html" class="service-card__cta">
+                    Grow My Brand
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- ─── 3. Meta Ads ───────────────────────────── -->
+        <div class="service-card" id="service-meta-ads">
+            <div class="service-card__media">
+                <img src="assets/images/meta-ads-service.png" alt="Meta ads campaign manager dashboard" loading="lazy" decoding="async">
+            </div>
+            <div class="service-card__content">
+                <span class="service-card__number">03</span>
+                <div class="service-card__tag">
+                    <span class="tag-dot"></span>
+                    Meta Ads
+                </div>
+                <h2 class="service-card__title">
+                    Meta Ads that maximize every rupee spent
+                </h2>
+                <p class="service-card__desc">
+                    We engineer high-ROI Facebook and Instagram ad campaigns using advanced audience segmentation, creative A/B testing, and AI-driven budget optimization. Every campaign is built to deliver measurable, scalable results.
+                </p>
+                <ul class="service-card__features">
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Advanced audience targeting — lookalike, retargeting & custom segments
+                    </li>
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Dynamic creative optimization & full-funnel campaign architecture
+                    </li>
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Pixel setup, conversion API integration & real-time ROAS tracking
+                    </li>
+                </ul>
+                <a href="contact.html" class="service-card__cta">
+                    Launch Meta Ads
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- ─── 4. Google Ads ─────────────────────────── -->
+        <div class="service-card" id="service-google-ads">
+            <div class="service-card__media">
+                <img src="assets/images/google-ads-service.png" alt="Google Ads campaign performance dashboard" loading="lazy" decoding="async">
+            </div>
+            <div class="service-card__content">
+                <span class="service-card__number">04</span>
+                <div class="service-card__tag">
+                    <span class="tag-dot"></span>
+                    Google Ads
+                </div>
+                <h2 class="service-card__title">
+                    Google Ads campaigns engineered for conversions
+                </h2>
+                <p class="service-card__desc">
+                    We build and manage performance-focused Google Ads campaigns — Search, Display, Shopping, and YouTube — designed to capture high-intent traffic and deliver predictable, profitable customer acquisition at scale.
+                </p>
+                <ul class="service-card__features">
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Keyword research, search & shopping campaign architecture
+                    </li>
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Smart bidding strategies, quality score optimization & ad extensions
+                    </li>
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Landing page optimization, conversion tracking & GA4 integration
+                    </li>
+                </ul>
+                <a href="contact.html" class="service-card__cta">
+                    Start Google Ads
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- ─── 5. Content Creation & Planning ────────── -->
+        <div class="service-card" id="service-content">
+            <div class="service-card__media">
+                <img src="assets/images/content-creation-service.png" alt="Content creation and planning workspace" loading="lazy" decoding="async">
+            </div>
+            <div class="service-card__content">
+                <span class="service-card__number">05</span>
+                <div class="service-card__tag">
+                    <span class="tag-dot"></span>
+                    Content Creation & Planning
+                </div>
+                <h2 class="service-card__title">
+                    Content that captures attention & drives action
+                </h2>
+                <p class="service-card__desc">
+                    We craft strategic, scroll-stopping content across every format — blogs, social posts, video scripts, carousels, and email sequences — all aligned to your brand voice and built around a data-driven content calendar.
+                </p>
+                <ul class="service-card__features">
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Monthly content calendars with trending topics & SEO-optimized copy
+                    </li>
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Professional graphic design, reels, carousels & video production
+                    </li>
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Blog writing, email sequences & conversion-focused copywriting
+                    </li>
+                </ul>
+                <a href="contact.html" class="service-card__cta">
+                    Plan My Content
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- ─── 6. Branding Strategies ────────────────── -->
+        <div class="service-card" id="service-branding">
+            <div class="service-card__media">
+                <img src="assets/images/branding-strategy-service.png" alt="Branding strategy workspace with brand identity elements" loading="lazy" decoding="async">
+            </div>
+            <div class="service-card__content">
+                <span class="service-card__number">06</span>
+                <div class="service-card__tag">
+                    <span class="tag-dot"></span>
+                    Branding Strategies
+                </div>
+                <h2 class="service-card__title">
+                    Brand identities that leave a lasting impression
+                </h2>
+                <p class="service-card__desc">
+                    We don't just design logos — we architect entire brand ecosystems. From visual identity and tone of voice to brand positioning and messaging frameworks, we build brands that resonate deeply with your target audience.
+                </p>
+                <ul class="service-card__features">
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Logo design, visual identity systems & comprehensive brand guidelines
+                    </li>
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Brand positioning, messaging architecture & tone-of-voice development
+                    </li>
+                    <li>
+                        <span class="check-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Competitor analysis, market differentiation & brand launch strategy
+                    </li>
+                </ul>
+                <a href="contact.html" class="service-card__cta">
+                    Build My Brand
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="py-5" style="background-color: var(--color-dark-purple);">
+        <div class="container py-5 text-center fade-up">
+            <h2 class="text-white fs-1 fw-bold mb-4">Ready to accelerate your growth?</h2>
+            <p class="text-white-50 fs-5 mb-5 mx-auto" style="max-width: 600px;">
+                Tell us about your project. We'll craft a tailored strategy and roadmap within 48 hours.
+            </p>
+            <a href="contact.html" class="btn btn-light rounded-pill fw-bold px-5 py-3">
+                Get a Free Consultation
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 border-top" style="border-color: rgba(255,255,255,0.1) !important; background-color: var(--color-bg-base);">
+        <div class="container fade-up">
+            <div class="row g-4">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <a href="index.html" aria-label="NeuroNiv Home" class="text-decoration-none d-flex align-items-center gap-2 mb-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#e879f9"/>
+                            <path d="M2 17L12 22L22 17" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="text-white fw-bold fs-5" style="letter-spacing: -0.05em;">NeuroNiv</span>
+                    </a>
+                    <p class="text-white-50 small pe-md-4 mb-4">
+                        NeuroNiv is an AI-Native Product Engineering Studio. We help growing companies build scalable, production-ready software systems with senior discipline.
+                    </p>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1">
+                    <h5 class="text-white fs-6 mb-4 fw-bold">Company</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3">
+                        <li><a href="about.html" class="footer-link">About Us</a></li>
+                        <li><a href="services.html" class="footer-link">Services</a></li>
+                        <li><a href="careers.html" class="footer-link">Careers</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                        <li><a href="work.html" class="footer-link">Work</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h5 class="text-white fs-6 mb-4 fw-bold">Services</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3">
+                        <li><a href="#service-ecommerce" class="footer-link">E-Commerce</a></li>
+                        <li><a href="#service-smm" class="footer-link">Social Media</a></li>
+                        <li><a href="#service-meta-ads" class="footer-link">Meta Ads</a></li>
+                        <li><a href="#service-google-ads" class="footer-link">Google Ads</a></li>
+                        <li><a href="#service-content" class="footer-link">Content Creation</a></li>
+                        <li><a href="#service-branding" class="footer-link">Branding</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mt-5 mt-lg-0">
+                    <h5 class="text-white fs-6 mb-4 fw-bold">Stay Updated</h5>
+                    <p class="text-white-50 small mb-3">Get the latest growth insights.</p>
+                    <div class="d-flex">
+                        <input type="email" class="form-control bg-transparent text-white border-secondary rounded-start-pill" placeholder="Email address" style="border-color: rgba(255,255,255,0.2) !important;">
+                        <button class="btn btn-primary-custom rounded-end-pill px-3 m-0 border-0" style="background-color: var(--color-primary); color: white;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center border-top mt-5 pt-4" style="border-color: rgba(255,255,255,0.1) !important;">
+                <div class="text-white-50 small mb-3 mb-md-0">
+                    &copy; 2026 NeuroNiv LLC. All rights reserved.
+                </div>
+                <div class="d-flex gap-4">
+                    <a href="#" class="footer-link small">Privacy Policy</a>
+                    <a href="#" class="footer-link small">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+
+    <!-- ══════════════════════════════════════════════════
+         SERVICES — Scroll Reveal & Release Logic
+         ══════════════════════════════════════════════════ -->
+    <script>
+    (function() {
+        'use strict';
+
+        const cards = document.querySelectorAll('.service-card');
+        const progressDots = document.querySelectorAll('.services-progress__dot');
+
+        if (!cards.length) return;
+
+        /* ── Bidirectional Intersection Observer ────────────
+           • Scroll DOWN → card enters viewport → add 'revealed'
+           • Scroll UP  → card leaves viewport → remove 'revealed'
+           This gives the "one by one appear / disappear" effect
+        ────────────────────────────────────────────────────── */
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                } else {
+                    // Only remove when card scrolls OUT (above viewport)
+                    const rect = entry.boundingClientRect;
+                    if (rect.top > 0) {
+                        // Card is below the viewport — remove revealed so it re-animates
+                        entry.target.classList.remove('revealed');
+                    }
+                    // If card is above viewport (already scrolled past), keep it revealed
+                }
+            });
+
+            // Update progress dots
+            updateProgress();
+        }, {
+            root: null,
+            rootMargin: '0px 0px -15% 0px',
+            threshold: 0.15
+        });
+
+        cards.forEach(card => revealObserver.observe(card));
+
+        /* ── Progress dots update ─────────────────────────── */
+        function updateProgress() {
+            let activeIndex = -1;
+            cards.forEach((card, i) => {
+                if (card.classList.contains('revealed')) {
+                    activeIndex = i;
+                }
+            });
+
+            progressDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i <= activeIndex);
+            });
+        }
+
+        /* ── Progress dot click → scroll to card ──────────── */
+        progressDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const idx = parseInt(dot.dataset.index);
+                if (cards[idx]) {
+                    cards[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+
+        /* ── Hero bounce-scroll keyframe (reuse from index) ── */
+        // Already defined in style.css via the bounce-scroll animation
+
+    })();
+    </script>
+</body>
+</html>

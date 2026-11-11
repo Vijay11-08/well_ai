@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NeuroNiv — AI Solutions, Web Applications & Digital Growth Studio</title>
+    <meta name="description" content="NeuroNiv builds AI/ML solutions, custom web applications, automation systems, and digital marketing strategies for businesses ready to scale. Rajkot, India." />
+    <meta name="keywords" content="AI development, machine learning, web application development, automation, SaaS, digital marketing, social media management, business automation, digital transformation, Rajkot" />
+    <meta property="og:title" content="NeuroNiv — AI, Web & Digital Growth Studio" />
+    <meta property="og:description" content="We combine AI, software engineering, automation and digital growth to turn complex business challenges into scalable digital solutions." />
+    <meta property="og:type" content="website" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div id="cursor-ring"></div>
+    <div id="cursor-dot"></div>
+    <div id="cursor-arrow">
+        <svg viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L21 12L1 23V1Z" fill="white" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <div id="mobileNav" class="mobile-nav" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+        <button class="btn text-white position-absolute" style="top:1.5rem;right:1.5rem;z-index:10;" id="mobileNavClose" aria-label="Close menu">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <nav class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link is-current">Home</a>
+            <a href="about.html" class="mobile-nav-link">About</a>
+            <a href="services.html" class="mobile-nav-link">Services</a>
+            <a href="work.html" class="mobile-nav-link">Work</a>
+            <a href="careers.html" class="mobile-nav-link">Career</a>
+            <a href="contact.html" class="btn-primary-custom mobile-nav-cta">Start a Project</a>
+        </nav>
+    </div>
+
+    <!-- Navbar -->
+    <header class="site-header nav-top">
+        <div class="container glass-nav d-flex align-items-center justify-content-between py-2 px-4">
+            <a href="index.html" aria-label="NeuroNiv Home" class="text-decoration-none d-flex align-items-center gap-2">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#e879f9"/>
+                    <path d="M2 17L12 22L22 17" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="text-white fw-bold fs-5" style="letter-spacing: -0.05em;">NeuroNiv</span>
+            </a>
+            <nav class="d-none d-lg-flex gap-4">
+                <a href="index.html" class="nav-link text-white text-decoration-none active">Home</a>
+                <a href="about.html" class="nav-link text-decoration-none">About</a>
+                <a href="services.html" class="nav-link text-decoration-none">Services</a>
+                <a href="work.html" class="nav-link text-decoration-none">Work</a>
+                <a href="careers.html" class="nav-link text-decoration-none">Career</a>
+            </nav>
+            <div class="d-flex align-items-center gap-3">
+                <a href="contact.html" class="btn-primary-custom d-none d-lg-inline-flex">
+                    Contact Us
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                </a>
+                <button class="btn text-white d-lg-none nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 1 — HERO
+         ══════════════════════════════════════════════════ -->
+    <main class="hero-section" id="hero-canvas-wrap">
+        <canvas id="hero-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;" aria-hidden="true"></canvas>
+        <div class="container text-center pt-5 position-relative" style="z-index:1;">
+            <span class="badge-custom hero-anim-1 mb-4 d-inline-block">AI + Technology + Digital Growth</span>
+            <h1 class="hero-title hero-anim-2 text-white mb-4">
+                Building Intelligent<br>
+                Digital Systems for the
+                <span class="hand-font">Next Generation<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>
+                of Business.
+            </h1>
+            <p class="hero-anim-3 text-white-50 fs-5 fw-medium mx-auto mb-3" style="max-width: 820px;">
+                We combine AI, software engineering, automation and digital growth to turn complex business challenges into scalable digital solutions.
+            </p>
+            <p class="hero-anim-3 text-white-50 mx-auto mb-5" style="max-width: 700px; font-size: 0.98rem;">
+                From AI/ML models and custom web applications to marketing systems and social media — NeuroNiv delivers the full spectrum of modern digital capability.
+            </p>
+            <div class="hero-anim-4 d-flex flex-column flex-sm-row justify-content-center gap-3">
+                <a href="contact.html" class="btn-primary-custom">
+                    Start a Project
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                </a>
+                <a href="#capabilities-section" class="btn-outline-custom">
+                    Explore Our Capabilities
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="hero-anim-5 row mt-5 pt-4 g-3 justify-content-center mx-auto" style="max-width: 760px;">
+                <div class="col-6 col-sm-3">
+                    <div class="stat-card">
+                        <div class="fs-3 fw-bold text-white mb-1">10+</div>
+                        <div class="text-white-50" style="font-size: 0.75rem;">Industries<br/>Served</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="stat-card">
+                        <div class="fs-3 fw-bold text-white mb-1">40+</div>
+                        <div class="text-white-50" style="font-size: 0.75rem;">Digital Solutions<br/>Delivered</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="stat-card">
+                        <div class="fs-3 fw-bold text-white mb-1">3-in-1</div>
+                        <div class="text-white-50" style="font-size: 0.75rem;">AI + Web + Marketing<br/>Under One Roof</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="stat-card">
+                        <div class="fs-3 fw-bold text-white mb-1">24h</div>
+                        <div class="text-white-50" style="font-size: 0.75rem;">Technical Review<br/>Response Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 2 — CAPABILITY TRUST STRIP
+         ══════════════════════════════════════════════════ -->
+    <section style="background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06);">
+        <div class="container py-4">
+            <div class="cap-strip">
+                <span class="cap-strip-item"><span class="cap-strip-dot"></span>AI & Machine Learning</span>
+                <span class="cap-strip-item"><span class="cap-strip-dot" style="background:var(--color-secondary);box-shadow:0 0 10px var(--color-secondary);"></span>Web Applications</span>
+                <span class="cap-strip-item"><span class="cap-strip-dot" style="background:var(--color-accent-cyan);box-shadow:0 0 10px var(--color-accent-cyan);"></span>Intelligent Automation</span>
+                <span class="cap-strip-item"><span class="cap-strip-dot" style="background:#f59e0b;box-shadow:0 0 10px #f59e0b;"></span>Digital Marketing</span>
+                <span class="cap-strip-item"><span class="cap-strip-dot" style="background:#10b981;box-shadow:0 0 10px #10b981;"></span>Social Media Management</span>
+                <span class="cap-strip-item"><span class="cap-strip-dot" style="background:var(--color-primary);box-shadow:0 0 10px var(--color-primary);"></span>Cloud & Data</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         PARTNERS MARQUEE
+         ══════════════════════════════════════════════════ -->
+    <section class="marquee-container" style="background: rgba(255,255,255,0.02);">
+        <p class="text-center text-white-50 mb-4" style="font-size: 0.85rem;">Technologies and platforms we build with across AI, cloud, web, data and marketing.</p>
+        <div class="marquee-content">
+            <h4 class="marquee-item fw-bold m-0 px-4">AMAZON WEB SERVICES</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">MICROSOFT AZURE</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">GOOGLE CLOUD</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">OPENAI</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">ANTHROPIC</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">HUGGING FACE</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">HUBSPOT</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">STRIPE</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">META ADS</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">GOOGLE ADS</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">VERCEL</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">NEXT.JS</h4>
+            <!-- Duplicates for seamless loop -->
+            <h4 class="marquee-item fw-bold m-0 px-4">AMAZON WEB SERVICES</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">MICROSOFT AZURE</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">GOOGLE CLOUD</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">OPENAI</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">ANTHROPIC</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">HUGGING FACE</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">HUBSPOT</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">STRIPE</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">META ADS</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">GOOGLE ADS</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">VERCEL</h4>
+            <h4 class="marquee-item fw-bold m-0 px-4">NEXT.JS</h4>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 3 — WHO WE ARE
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5" style="background-color: var(--color-bg-mid);">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 fade-up">
+                    <span class="section-eyebrow">Who We Are</span>
+                    <h2 class="text-white fs-1 fw-bold mb-4" style="line-height: 1.12; letter-spacing: -0.03em;">
+                        Technology Built Around<br>
+                        Real <span class="hand-font">Business Problems<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                    </h2>
+                    <p class="text-white-50 fs-5 mb-4" style="line-height: 1.7;">
+                        NeuroNiv is not simply a development vendor. We are a technology and digital growth studio that combines engineering, AI, design, automation, and marketing to create complete digital solutions.
+                    </p>
+                    <p class="text-white-50 mb-5" style="line-height: 1.7;">
+                        We work with startups, growing businesses, and established companies who want to move faster, build smarter, and grow their digital presence with real technology — not templated solutions.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 mb-5">
+                        <span class="company-intro-pill">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            Engineering First
+                        </span>
+                        <span class="company-intro-pill">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                            Business Focused
+                        </span>
+                        <span class="company-intro-pill">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                            AI-Native Approach
+                        </span>
+                        <span class="company-intro-pill">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            Human Centered
+                        </span>
+                    </div>
+                    <a href="about.html" class="btn-primary-custom">
+                        About NeuroNiv
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <div class="col-lg-6 fade-up" style="transition-delay: 0.15s;">
+                    <div class="company-intro-visual">
+                        <img src="assets/images/founder-portrait.png" alt="NeuroNiv — building intelligent digital systems" loading="lazy" decoding="async">
+                        <div class="ai-badge-float ai-badge-float--1 glass-card dark p-3 rounded-3">
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;"></div>
+                                <span class="text-white small fw-semibold">Currently Accepting Projects</span>
+                            </div>
+                            <div class="text-white-50" style="font-size:0.7rem;">24h review &amp; response</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 4 — WHAT WE SOLVE
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5 bg-white" id="what-we-solve">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-up">
+                <span class="section-eyebrow dark">Business Challenges We Address</span>
+                <h2 class="text-dark fs-1 fw-bold mt-2" style="letter-spacing: -0.03em;">
+                    Every business faces digital bottlenecks.<br>
+                    <span class="hand-font" style="color: var(--color-secondary);">We remove them<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                </h2>
+                <p class="text-muted mt-3 mx-auto" style="max-width: 600px;">We help businesses identify where technology can create the most value — and then build the systems to do it.</p>
+            </div>
+            <div class="row g-4 fade-up">
+                <div class="col-md-6 col-lg-4 stagger-child">
+                    <div class="problem-card h-100">
+                        <div class="problem-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <h4 class="fs-5 fw-bold text-dark mb-2" style="font-family: var(--font-heading); letter-spacing: -0.02em;">Manual Processes</h4>
+                        <p class="text-muted small mb-3">Repetitive operational tasks drain time and resources. Teams spend hours on work that intelligent automation can handle in seconds.</p>
+                        <p class="text-muted small mb-0">We replace repetitive workflows with intelligent automation that works 24/7 without errors.</p>
+                        <span class="problem-solution-tag">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            AI Automation
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 stagger-child">
+                    <div class="problem-card h-100">
+                        <div class="problem-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                        </div>
+                        <h4 class="fs-5 fw-bold text-dark mb-2" style="font-family: var(--font-heading); letter-spacing: -0.02em;">Outdated Systems</h4>
+                        <p class="text-muted small mb-3">Legacy software creates friction, limits scalability, and blocks new feature development. Technical debt compounds over time.</p>
+                        <p class="text-muted small mb-0">We modernize legacy systems into scalable web platforms built on current architecture.</p>
+                        <span class="problem-solution-tag">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            Web Engineering
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 stagger-child">
+                    <div class="problem-card h-100">
+                        <div class="problem-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                        </div>
+                        <h4 class="fs-5 fw-bold text-dark mb-2" style="font-family: var(--font-heading); letter-spacing: -0.02em;">Data Complexity</h4>
+                        <p class="text-muted small mb-3">Businesses sit on massive amounts of data but lack the systems to turn it into decisions. Fragmented data creates blind spots.</p>
+                        <p class="text-muted small mb-0">We build AI and data systems that convert fragmented signals into actionable intelligence.</p>
+                        <span class="problem-solution-tag">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            AI & Analytics
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 stagger-child">
+                    <div class="problem-card h-100">
+                        <div class="problem-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        </div>
+                        <h4 class="fs-5 fw-bold text-dark mb-2" style="font-family: var(--font-heading); letter-spacing: -0.02em;">Poor Digital Visibility</h4>
+                        <p class="text-muted small mb-3">Great products remain invisible when digital marketing is treated as an afterthought. Without reach, revenue doesn't grow.</p>
+                        <p class="text-muted small mb-0">We build digital marketing systems that help businesses reach the right audience at the right moment.</p>
+                        <span class="problem-solution-tag">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            Digital Marketing
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 stagger-child">
+                    <div class="problem-card h-100">
+                        <div class="problem-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h4 class="fs-5 fw-bold text-dark mb-2" style="font-family: var(--font-heading); letter-spacing: -0.02em;">Weak Social Presence</h4>
+                        <p class="text-muted small mb-3">Inconsistent content and reactive social strategy fails to build real brand authority. Audiences expect consistent, relevant communication.</p>
+                        <p class="text-muted small mb-0">We develop social media strategies that build genuine audiences and drive measurable engagement.</p>
+                        <span class="problem-solution-tag">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            Social Media
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 stagger-child">
+                    <div class="problem-card h-100">
+                        <div class="problem-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                        </div>
+                        <h4 class="fs-5 fw-bold text-dark mb-2" style="font-family: var(--font-heading); letter-spacing: -0.02em;">Operational Growth</h4>
+                        <p class="text-muted small mb-3">Systems that work at 10 users break at 10,000. Without intentional architecture, growth creates operational crises rather than opportunities.</p>
+                        <p class="text-muted small mb-0">We design technology systems with scale in mind from day one, so growth strengthens rather than strains your infrastructure.</p>
+                        <span class="problem-solution-tag">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            Architecture
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 5 — CORE CAPABILITIES
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5" id="capabilities-section" style="background-color: var(--color-bg-base);">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-up">
+                <span class="badge-custom d-inline-block mb-3">What We Build</span>
+                <h2 class="text-white fs-1 fw-bold" style="letter-spacing: -0.03em;">
+                    Our Core <span class="hand-font">Capabilities<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                </h2>
+                <p class="text-white-50 mt-3 mx-auto" style="max-width: 620px;">Five interconnected disciplines that come together to solve the complete digital challenge.</p>
+            </div>
+
+            <!-- AI & ML Row -->
+            <div class="row g-4 mb-4 fade-up" id="ai-models-section">
+                <div class="col-lg-7">
+                    <div class="capability-card dark h-100">
+                        <div class="img-reveal-wrap" style="max-height: 320px; border-radius: 1.5rem 1.5rem 0 0; overflow: hidden; border: none;">
+                            <img src="assets/images/ai-models.png" alt="AI and Machine Learning model visualization" class="capability-card-img" loading="lazy" decoding="async">
+                            <div class="img-reveal-gradient"></div>
+                        </div>
+                        <div class="capability-card-body">
+                            <span class="badge-custom d-inline-block mb-3">AI & Machine Learning</span>
+                            <h3 class="text-white fw-bold mb-3" style="font-size: 1.5rem; letter-spacing: -0.025em;">Intelligent Systems That Actually Ship.</h3>
+                            <p class="text-white-50 mb-3">We build production AI — LLM fine-tuning, RAG pipelines, computer vision, NLP, predictive analytics, AI agents, and intelligent automation — with the architecture to run reliably in the real world.</p>
+                            <div class="service-tags">
+                                <span class="service-tag dark">Machine Learning</span>
+                                <span class="service-tag dark">Generative AI</span>
+                                <span class="service-tag dark">Computer Vision</span>
+                                <span class="service-tag dark">NLP</span>
+                                <span class="service-tag dark">AI Agents</span>
+                                <span class="service-tag dark">Predictive Analytics</span>
+                            </div>
+                            <a href="contact.html" class="btn-primary-custom mt-4 d-inline-flex">
+                                Build AI With Us
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="capability-card dark h-100">
+                        <div class="img-reveal-wrap" style="max-height: 220px; border-radius: 1.5rem 1.5rem 0 0; overflow: hidden; border: none;">
+                            <img src="assets/images/production-ai.png" alt="Production AI deployment systems" class="capability-card-img" loading="lazy" decoding="async">
+                            <div class="img-reveal-gradient"></div>
+                        </div>
+                        <div class="capability-card-body">
+                            <h4 class="text-white fw-bold mb-2" style="letter-spacing: -0.02em;">AI Beyond the Prototype.</h4>
+                            <p class="text-white-50 small mb-0">We focus on practical implementation: scalable architecture, secure deployment, continuous monitoring, and real integration into your business workflows.</p>
+                            <div class="service-tags mt-3">
+                                <span class="service-tag dark">Fine-Tuning</span>
+                                <span class="service-tag dark">RAG</span>
+                                <span class="service-tag dark">Multi-Agent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Web + Automation Row -->
+            <div class="row g-4 mb-4 fade-up" id="web-platform-section">
+                <div class="col-md-6">
+                    <div class="capability-card light h-100">
+                        <div class="img-reveal-wrap" style="max-height: 220px; border-radius: 1.25rem 1.25rem 0 0; overflow: hidden; border: none; border-bottom: 1.5px solid #e5e7eb;">
+                            <img src="assets/images/web-development.png" alt="Custom web application development" class="capability-card-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="capability-card-body">
+                            <span class="badge-custom-dark d-inline-block mb-3">Web Applications</span>
+                            <h3 class="text-dark fw-bold mb-3" style="font-size: 1.3rem; letter-spacing: -0.025em;">Digital Products Built to Scale.</h3>
+                            <p class="text-muted small mb-3">Custom web applications, SaaS platforms, business dashboards, enterprise systems, APIs, and backend platforms — from first commit to production launch.</p>
+                            <div class="service-tags">
+                                <span class="service-tag light">SaaS Platforms</span>
+                                <span class="service-tag light">Business Dashboards</span>
+                                <span class="service-tag light">APIs</span>
+                                <span class="service-tag light">Enterprise Systems</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="capability-card light h-100">
+                        <div class="img-reveal-wrap" style="max-height: 220px; border-radius: 1.25rem 1.25rem 0 0; overflow: hidden; border: none; border-bottom: 1.5px solid #e5e7eb;">
+                            <img src="assets/images/app-development.png" alt="Application development and automation" class="capability-card-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="capability-card-body">
+                            <span class="badge-custom-dark d-inline-block mb-3">Intelligent Automation</span>
+                            <h3 class="text-dark fw-bold mb-3" style="font-size: 1.3rem; letter-spacing: -0.025em;">Automate What Slows You Down.</h3>
+                            <p class="text-muted small mb-3">We build systems that automate repetitive operations, data processing, notifications, reporting, and complex business workflows — freeing your team for higher-value work.</p>
+                            <div class="service-tags">
+                                <span class="service-tag light">Workflow Automation</span>
+                                <span class="service-tag light">Data Processing</span>
+                                <span class="service-tag light">Business Ops</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketing Row -->
+            <div class="row g-4 fade-up" id="ai-marketing-section">
+                <div class="col-lg-5">
+                    <div class="capability-card dark h-100">
+                        <div class="img-reveal-wrap" style="max-height: 220px; border-radius: 1.5rem 1.5rem 0 0; overflow: hidden; border: none;">
+                            <img src="assets/images/ai-marketing.png" alt="AI-powered digital marketing system" class="capability-card-img" loading="lazy" decoding="async">
+                            <div class="img-reveal-gradient"></div>
+                        </div>
+                        <div class="capability-card-body">
+                            <span class="badge-custom d-inline-block mb-3">Digital Marketing</span>
+                            <h4 class="text-white fw-bold mb-2" style="letter-spacing: -0.02em;">Performance Marketing That Converts.</h4>
+                            <p class="text-white-50 small mb-3">SEO, Google Ads, Meta Ads, lead generation, analytics, content strategy, and conversion optimization — data-driven and results-focused.</p>
+                            <div class="service-tags">
+                                <span class="service-tag dark">Google Ads</span>
+                                <span class="service-tag dark">Meta Ads</span>
+                                <span class="service-tag dark">SEO</span>
+                                <span class="service-tag dark">Lead Generation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="capability-card light h-100">
+                        <div class="marketing-service-grid" style="padding: 1.5rem 1.5rem 0 1.5rem;">
+                            <div class="marketing-service-card rounded-3">
+                                <img src="assets/images/social-media-service.png" alt="Social media management strategy" loading="lazy" decoding="async">
+                                <div class="marketing-service-card-label">Social Media Management</div>
+                            </div>
+                            <div class="marketing-service-card rounded-3">
+                                <img src="assets/images/content-creation-service.png" alt="Content creation and strategy" loading="lazy" decoding="async">
+                                <div class="marketing-service-card-label">Content Creation</div>
+                            </div>
+                            <div class="marketing-service-card rounded-3">
+                                <img src="assets/images/google-ads-service.png" alt="Google Ads campaign management" loading="lazy" decoding="async">
+                                <div class="marketing-service-card-label">Google Ads</div>
+                            </div>
+                            <div class="marketing-service-card rounded-3">
+                                <img src="assets/images/meta-ads-service.png" alt="Meta Ads and Facebook marketing" loading="lazy" decoding="async">
+                                <div class="marketing-service-card-label">Meta Ads</div>
+                            </div>
+                        </div>
+                        <div class="capability-card-body">
+                            <span class="badge-custom-dark d-inline-block mb-3">Social Media</span>
+                            <h4 class="text-dark fw-bold mb-2" style="letter-spacing: -0.02em;">Grow Your Brand Where Your Audience Lives.</h4>
+                            <p class="text-muted small mb-0">Social media strategy, content planning, creative production, campaign management, audience growth, and performance analysis — consistent presence that builds authority.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 6 — AI INTELLIGENCE FLOW
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5" style="background-color: var(--color-bg-base); border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-up">
+                <span class="badge-custom d-inline-block mb-3">AI Intelligence Engine</span>
+                <h2 class="text-white fs-1 fw-bold" style="letter-spacing: -0.03em;">
+                    From Data to <span class="hand-font">Intelligence<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                </h2>
+                <p class="text-white-50 mt-3 mx-auto" style="max-width: 640px;">A disciplined pipeline connecting raw business data to neural reasoning, automated execution, and verifiable business impact.</p>
+            </div>
+
+            <!-- AI Flow Pipeline -->
+            <div class="ai-flow-container fade-up">
+                <div class="ai-flow-step">
+                    <div class="ai-flow-step__num">01 / PROBLEM</div>
+                    <h4 class="ai-flow-step__title">Business Challenge</h4>
+                    <p class="ai-flow-step__desc">Define the operational problem, data sources, and success metrics with precision.</p>
+                </div>
+                <div class="ai-flow-step">
+                    <div class="ai-flow-step__num">02 / DATA</div>
+                    <h4 class="ai-flow-step__title">Data Ingestion</h4>
+                    <p class="ai-flow-step__desc">APIs, vector embeddings, streaming signals, documents, and enterprise datasets.</p>
+                </div>
+                <div class="ai-flow-step">
+                    <div class="ai-flow-step__num">03 / AI ENGINE</div>
+                    <h4 class="ai-flow-step__title">Neural Reasoning</h4>
+                    <p class="ai-flow-step__desc">Fine-tuned LLMs, RAG pipelines, multi-agent systems, and specialized vision models.</p>
+                </div>
+                <div class="ai-flow-step">
+                    <div class="ai-flow-step__num">04 / AUTOMATION</div>
+                    <h4 class="ai-flow-step__title">Workflow Triggers</h4>
+                    <p class="ai-flow-step__desc">Autonomous background jobs, event queues, API dispatching, and self-healing task loops.</p>
+                </div>
+                <div class="ai-flow-step">
+                    <div class="ai-flow-step__num">05 / IMPACT</div>
+                    <h4 class="ai-flow-step__title">Business Value</h4>
+                    <p class="ai-flow-step__desc">Faster decisions, reduced toil, accelerated operations, and measurable business outcomes.</p>
+                </div>
+            </div>
+
+            <!-- AI Capability Badges -->
+            <div class="row g-3 mt-4 fade-up">
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="glass-card dark p-3 text-center">
+                        <div class="feature-icon-box mx-auto mb-2" style="width:42px;height:42px;border-radius:10px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div class="text-white fw-bold" style="font-size: 0.85rem; font-family: var(--font-heading);">Generative AI</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="glass-card dark p-3 text-center">
+                        <div class="feature-icon-box mx-auto mb-2" style="width:42px;height:42px;border-radius:10px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div class="text-white fw-bold" style="font-size: 0.85rem; font-family: var(--font-heading);">Computer Vision</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="glass-card dark p-3 text-center">
+                        <div class="feature-icon-box mx-auto mb-2" style="width:42px;height:42px;border-radius:10px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <div class="text-white fw-bold" style="font-size: 0.85rem; font-family: var(--font-heading);">NLP & LLMs</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="glass-card dark p-3 text-center">
+                        <div class="feature-icon-box mx-auto mb-2" style="width:42px;height:42px;border-radius:10px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                        </div>
+                        <div class="text-white fw-bold" style="font-size: 0.85rem; font-family: var(--font-heading);">Predictive Analytics</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="glass-card dark p-3 text-center">
+                        <div class="feature-icon-box mx-auto mb-2" style="width:42px;height:42px;border-radius:10px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <div class="text-white fw-bold" style="font-size: 0.85rem; font-family: var(--font-heading);">AI Agents</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="glass-card dark p-3 text-center">
+                        <div class="feature-icon-box mx-auto mb-2" style="width:42px;height:42px;border-radius:10px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        </div>
+                        <div class="text-white fw-bold" style="font-size: 0.85rem; font-family: var(--font-heading);">Intelligent Automation</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="glass-card dark p-3 text-center">
+                        <div class="feature-icon-box mx-auto mb-2" style="width:42px;height:42px;border-radius:10px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                        </div>
+                        <div class="text-white fw-bold" style="font-size: 0.85rem; font-family: var(--font-heading);">Data Pipelines</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="glass-card dark p-3 text-center">
+                        <div class="feature-icon-box mx-auto mb-2" style="width:42px;height:42px;border-radius:10px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+                        </div>
+                        <div class="text-white fw-bold" style="font-size: 0.85rem; font-family: var(--font-heading);">Cloud Native</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 7 — WEB APPLICATION ENGINEERING (SPLIT)
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5" style="background-color: #f8f9fa;">
+        <div class="container py-5">
+            <div class="row align-items-center g-5 flex-lg-row-reverse">
+                <div class="col-lg-6 fade-up">
+                    <span class="section-eyebrow dark">Web Application Engineering</span>
+                    <h2 class="text-dark fs-1 fw-bold mb-4" style="letter-spacing: -0.03em; line-height: 1.12;">
+                        From Idea to<br>
+                        <span class="hand-font" style="color: var(--color-secondary);">Production<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                    </h2>
+                    <p class="text-muted fs-5 mb-4" style="line-height: 1.7;">We build complete digital products — not just features. From UX design to cloud deployment, every layer is considered with the same rigour.</p>
+
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <span class="badge rounded-pill bg-dark text-white px-3 py-2" style="font-size: 0.78rem;">React / Next.js</span>
+                        <span class="badge rounded-pill bg-dark text-white px-3 py-2" style="font-size: 0.78rem;">Node.js</span>
+                        <span class="badge rounded-pill bg-dark text-white px-3 py-2" style="font-size: 0.78rem;">Python / FastAPI</span>
+                        <span class="badge rounded-pill bg-dark text-white px-3 py-2" style="font-size: 0.78rem;">PostgreSQL</span>
+                        <span class="badge rounded-pill bg-dark text-white px-3 py-2" style="font-size: 0.78rem;">Docker / K8s</span>
+                        <span class="badge rounded-pill bg-dark text-white px-3 py-2" style="font-size: 0.78rem;">AWS / GCP</span>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-6">
+                            <div class="p-3 rounded-3" style="background: white; border: 1px solid #e5e7eb;">
+                                <div class="fw-bold text-dark mb-1" style="font-size:1.5rem; font-family: var(--font-heading);">100</div>
+                                <div class="text-muted small">Lighthouse Score target</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 rounded-3" style="background: white; border: 1px solid #e5e7eb;">
+                                <div class="fw-bold mb-1" style="font-size:1.5rem; color: var(--color-secondary); font-family: var(--font-heading);">&lt;1s</div>
+                                <div class="text-muted small">Target LCP load time</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 rounded-3" style="background: white; border: 1px solid #e5e7eb;">
+                                <div class="fw-bold text-dark mb-1" style="font-size:1.5rem; font-family: var(--font-heading);">SEO</div>
+                                <div class="text-muted small">Semantic HTML &amp; structured data</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 rounded-3" style="background: white; border: 1px solid #e5e7eb;">
+                                <div class="fw-bold text-dark mb-1" style="font-size:1.5rem; font-family: var(--font-heading);">A11y</div>
+                                <div class="text-muted small">WCAG 2.1 AA compliant</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn btn-dark rounded-pill fw-bold px-5 py-3">
+                        Start Your Web Project
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ms-2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+                <div class="col-lg-6 fade-up" style="transition-delay: 0.15s;">
+                    <div class="rounded-4 overflow-hidden shadow-lg" style="border: 1px solid rgba(139,92,246,0.2);">
+                        <img src="assets/images/product-builds.png" alt="End-to-end product builds and web development" class="img-fluid w-100" loading="lazy" decoding="async" style="object-fit: cover; display: block;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 8 — PRODUCT DEVELOPMENT PROCESS (TIMELINE)
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5" style="background-color: var(--color-bg-mid);">
+        <div class="container py-5">
+            <div class="row g-5 align-items-start">
+                <div class="col-lg-5 fade-up">
+                    <span class="badge-custom d-inline-block mb-4">How We Build</span>
+                    <h2 class="text-white fs-1 fw-bold mb-4" style="letter-spacing: -0.03em; line-height: 1.12;">
+                        Our Product<br>
+                        <span class="hand-font">Development Process<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                    </h2>
+                    <p class="text-white-50 fs-5 mb-5" style="line-height: 1.7;">A deliberate, systematic approach to turning ideas into production-ready digital products — without shortcuts that create future problems.</p>
+                    <a href="contact.html" class="btn-primary-custom">
+                        Start the Conversation
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                    </a>
+                </div>
+                <div class="col-lg-7 fade-up" style="transition-delay: 0.1s;">
+                    <div class="process-timeline">
+                        <div class="process-step stagger-child">
+                            <div class="process-step-num">01</div>
+                            <div class="process-step-content">
+                                <h4 class="process-step-title light">Discover</h4>
+                                <p class="process-step-desc light">Understand the business, goals, constraints, users, and technical landscape before writing a single line of code.</p>
+                            </div>
+                        </div>
+                        <div class="process-step stagger-child">
+                            <div class="process-step-num">02</div>
+                            <div class="process-step-content">
+                                <h4 class="process-step-title light">Plan & Architect</h4>
+                                <p class="process-step-desc light">Define technology choices, system architecture, data models, and project roadmap with clear milestones.</p>
+                            </div>
+                        </div>
+                        <div class="process-step stagger-child">
+                            <div class="process-step-num">03</div>
+                            <div class="process-step-content">
+                                <h4 class="process-step-title light">Design</h4>
+                                <p class="process-step-desc light">Create UX flows, user interfaces, and interactive prototypes aligned with the product's core purpose.</p>
+                            </div>
+                        </div>
+                        <div class="process-step stagger-child">
+                            <div class="process-step-num">04</div>
+                            <div class="process-step-content">
+                                <h4 class="process-step-title light">Build</h4>
+                                <p class="process-step-desc light">Develop frontend, backend, APIs, integrations, and AI components with clean, maintainable code.</p>
+                            </div>
+                        </div>
+                        <div class="process-step stagger-child">
+                            <div class="process-step-num">05</div>
+                            <div class="process-step-content">
+                                <h4 class="process-step-title light">Test & Validate</h4>
+                                <p class="process-step-desc light">Automated testing, QA, security review, performance benchmarking, and user acceptance before launch.</p>
+                            </div>
+                        </div>
+                        <div class="process-step stagger-child">
+                            <div class="process-step-num">06</div>
+                            <div class="process-step-content">
+                                <h4 class="process-step-title light">Launch</h4>
+                                <p class="process-step-desc light">Deploy to production with monitoring, CI/CD pipelines, and infrastructure ready to handle real traffic.</p>
+                            </div>
+                        </div>
+                        <div class="process-step stagger-child">
+                            <div class="process-step-num">07</div>
+                            <div class="process-step-content">
+                                <h4 class="process-step-title light">Improve & Scale</h4>
+                                <p class="process-step-desc light">Measure real usage, optimize performance, respond to feedback, and evolve the product over time.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 9 — DIGITAL GROWTH (SPLIT + FUNNEL)
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5" style="background-color: var(--color-bg-base);">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 fade-up">
+                    <span class="badge-custom d-inline-block mb-4">Digital Growth</span>
+                    <h2 class="text-white fs-1 fw-bold mb-4" style="letter-spacing: -0.03em; line-height: 1.12;">
+                        Technology That Doesn't<br>
+                        Stop at <span class="hand-font">Development<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                    </h2>
+                    <p class="text-white-50 fs-5 mb-4" style="line-height: 1.7;">Building the product is only one part of digital success. NeuroNiv can also help businesses grow their digital presence through intelligent marketing and social strategy.</p>
+                    <div class="d-flex flex-column gap-3 mb-5">
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="flex-shrink-0" style="width:28px;height:28px;background:rgba(232,121,249,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div>
+                                <span class="text-white fw-semibold">SEO & Organic Growth</span>
+                                <p class="text-white-50 small mb-0">Technical SEO, content strategy, and structured data to rank where your audience searches.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="flex-shrink-0" style="width:28px;height:28px;background:rgba(232,121,249,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div>
+                                <span class="text-white fw-semibold">Paid Advertising</span>
+                                <p class="text-white-50 small mb-0">Google Ads and Meta Ads campaigns optimized for lead quality, not just volume.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="flex-shrink-0" style="width:28px;height:28px;background:rgba(232,121,249,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div>
+                                <span class="text-white fw-semibold">Content & Social Media</span>
+                                <p class="text-white-50 small mb-0">Strategy, creative content, and audience growth across the platforms your customers use.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="flex-shrink-0" style="width:28px;height:28px;background:rgba(232,121,249,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div>
+                                <span class="text-white fw-semibold">Analytics & Conversion</span>
+                                <p class="text-white-50 small mb-0">Data tracking, attribution modeling, and conversion optimization to improve what matters.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="services.html" class="btn-primary-custom">
+                        Explore Marketing Services
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <div class="col-lg-6 fade-up" style="transition-delay: 0.15s;">
+                    <div class="mb-4">
+                        <div class="rounded-4 overflow-hidden" style="border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+                            <img src="assets/images/ai-marketing.png" alt="Digital growth and marketing analytics" class="img-fluid w-100" loading="lazy" decoding="async" style="object-fit: cover; display: block;">
+                        </div>
+                    </div>
+                    <h4 class="text-white fw-bold text-center mb-4" style="font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.6;">The Growth Funnel</h4>
+                    <div class="growth-funnel">
+                        <div class="growth-funnel-step">
+                            <div class="growth-funnel-dot" style="background: #e879f9; box-shadow: 0 0 10px #e879f9;"></div>
+                            <span class="growth-funnel-label">REACH — Targeted Audience</span>
+                            <span class="growth-funnel-arrow">→</span>
+                        </div>
+                        <div class="growth-funnel-step">
+                            <div class="growth-funnel-dot" style="background: #a855f7; box-shadow: 0 0 10px #a855f7;"></div>
+                            <span class="growth-funnel-label">ATTENTION — Brand Awareness</span>
+                            <span class="growth-funnel-arrow">→</span>
+                        </div>
+                        <div class="growth-funnel-step">
+                            <div class="growth-funnel-dot" style="background: #8b5cf6; box-shadow: 0 0 10px #8b5cf6;"></div>
+                            <span class="growth-funnel-label">ENGAGEMENT — Content & Social</span>
+                            <span class="growth-funnel-arrow">→</span>
+                        </div>
+                        <div class="growth-funnel-step">
+                            <div class="growth-funnel-dot" style="background: #38bdf8; box-shadow: 0 0 10px #38bdf8;"></div>
+                            <span class="growth-funnel-label">LEADS — Qualified Prospects</span>
+                            <span class="growth-funnel-arrow">→</span>
+                        </div>
+                        <div class="growth-funnel-step">
+                            <div class="growth-funnel-dot" style="background: #10b981; box-shadow: 0 0 10px #10b981;"></div>
+                            <span class="growth-funnel-label">CONVERSION — Revenue</span>
+                            <span class="growth-funnel-arrow">→</span>
+                        </div>
+                        <div class="growth-funnel-step">
+                            <div class="growth-funnel-dot" style="background: #f59e0b; box-shadow: 0 0 10px #f59e0b;"></div>
+                            <span class="growth-funnel-label">RETENTION — Long-term Growth</span>
+                            <span class="growth-funnel-arrow">∞</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 10 — SECURITY & RELIABILITY
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5" style="background-color: var(--color-bg-base); border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-up">
+                <span class="badge-custom d-inline-block mb-3">Security & Reliability</span>
+                <h2 class="text-white fs-1 fw-bold" style="letter-spacing: -0.03em;">
+                    A Secure Foundation for<br>
+                    Your <span class="hand-font">Data & Applications<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                </h2>
+                <p class="text-white-50 mt-3 mx-auto" style="max-width: 600px;">Security and reliability are not features — they are foundational requirements built into every system we design.</p>
+            </div>
+            <div class="row g-4 fade-up">
+                <div class="col-md-3 stagger-child">
+                    <div class="card h-100 border-0 bg-transparent rounded-4 overflow-hidden">
+                        <img src="assets/images/data-security.png" class="card-img-top object-fit-cover" alt="Data Security — end-to-end encryption" style="height: 180px;" loading="lazy" decoding="async">
+                        <div class="card-body px-0 pt-3">
+                            <h5 class="card-title text-white fs-6 fw-bold">Data Security</h5>
+                            <p class="card-text text-white-50 small">End-to-end encryption at rest and in transit for all sensitive data.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 stagger-child">
+                    <div class="card h-100 border-0 bg-transparent rounded-4 overflow-hidden">
+                        <img src="assets/images/identity-access.png" class="card-img-top object-fit-cover" alt="Identity Access — zero-trust authentication" style="height: 180px;" loading="lazy" decoding="async">
+                        <div class="card-body px-0 pt-3">
+                            <h5 class="card-title text-white fs-6 fw-bold">Identity & Access</h5>
+                            <p class="card-text text-white-50 small">Zero-trust architecture and strict role-based access control.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 stagger-child">
+                    <div class="card h-100 border-0 bg-transparent rounded-4 overflow-hidden">
+                        <img src="assets/images/threat-detection.png" class="card-img-top object-fit-cover" alt="Threat Detection — real-time monitoring" style="height: 180px;" loading="lazy" decoding="async">
+                        <div class="card-body px-0 pt-3">
+                            <h5 class="card-title text-white fs-6 fw-bold">Threat Detection</h5>
+                            <p class="card-text text-white-50 small">Real-time monitoring, anomaly alerting, and incident response.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 stagger-child">
+                    <div class="card h-100 border-0 bg-transparent rounded-4 overflow-hidden">
+                        <img src="assets/images/network-defense.png" class="card-img-top object-fit-cover" alt="Network Defense — VPC and DDoS protection" style="height: 180px;" loading="lazy" decoding="async">
+                        <div class="card-body px-0 pt-3">
+                            <h5 class="card-title text-white fs-6 fw-bold">Network Defense</h5>
+                            <p class="card-text text-white-50 small">VPC isolation, firewalls, and DDoS protection layers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 11 — INDUSTRIES
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5 bg-white" id="industry-section">
+        <style>
+            .industry-tile {
+                background: #ffffff;
+                border: 1.5px solid #e5e7eb;
+                border-radius: 20px;
+                padding: 1.5rem 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.75rem;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+                box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+                position: relative;
+                overflow: hidden;
+            }
+            .industry-tile::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg, rgba(232,121,249,0.06) 0%, rgba(139,92,246,0.06) 100%);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            .industry-tile:hover {
+                border-color: var(--color-primary);
+                transform: translateY(-4px) scale(1.02);
+                box-shadow: 0 12px 32px rgba(232,121,249,0.18);
+            }
+            .industry-tile:hover::before { opacity: 1; }
+            .industry-icon {
+                width: 52px;
+                height: 52px;
+                border-radius: 14px;
+                background: rgba(232,121,249,0.08);
+                border: 1px solid rgba(232,121,249,0.2);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--color-primary);
+                transition: all 0.3s ease;
+                position: relative;
+                z-index: 1;
+            }
+            .industry-tile:hover .industry-icon {
+                background: var(--color-primary);
+                color: white;
+                border-color: var(--color-primary);
+                box-shadow: 0 4px 16px rgba(232,121,249,0.4);
+            }
+            .industry-label {
+                font-size: 0.82rem;
+                font-weight: 700;
+                color: #374151;
+                line-height: 1.35;
+                position: relative;
+                z-index: 1;
+                font-family: var(--font-heading);
+                transition: color 0.2s ease;
+            }
+            .industry-tile:hover .industry-label { color: #6d28d9; }
+        </style>
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-up">
+                <span class="badge-custom-dark d-inline-block mb-3">Industries We Serve</span>
+                <h2 class="text-dark fs-1 fw-bold" style="letter-spacing: -0.03em;">
+                    Industry-Specific<br>
+                    <span class="hand-font" style="color: var(--color-secondary);">Digital Solutions<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                </h2>
+                <p class="text-muted mt-3 mx-auto" style="max-width: 560px;">We build tailored solutions for diverse industries — ensuring every product fits the specific goals and constraints of that sector.</p>
+            </div>
+            <div class="industry-horizontal-grid fade-up">
+                <div class="industry-tile stagger-child">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    </div>
+                    <span class="industry-label">Education &amp; E-Learning</span>
+                </div>
+                <div class="industry-tile stagger-child">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <span class="industry-label">Healthcare &amp; Wellness</span>
+                </div>
+                <div class="industry-tile stagger-child">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    </div>
+                    <span class="industry-label">Retail &amp; Ecommerce</span>
+                </div>
+                <div class="industry-tile stagger-child">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    </div>
+                    <span class="industry-label">Finance &amp; FinTech</span>
+                </div>
+                <div class="industry-tile stagger-child">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <span class="industry-label">Logistics &amp; Supply Chain</span>
+                </div>
+                <div class="industry-tile stagger-child">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <span class="industry-label">Real Estate &amp; PropTech</span>
+                </div>
+                <div class="industry-tile stagger-child">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16z"/></svg>
+                    </div>
+                    <span class="industry-label">Travel &amp; Hospitality</span>
+                </div>
+                <div class="industry-tile stagger-child">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <span class="industry-label">Startups &amp; Scale-ups</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 12 — HOW WE WORK (PROCESS STEPS)
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5" style="background-color: var(--color-bg-mid);">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-up">
+                <span class="badge-custom d-inline-block mb-3">How We Work</span>
+                <h2 class="text-white fs-1 fw-bold" style="letter-spacing: -0.03em;">
+                    Clear steps. No surprises. <span class="hand-font">Real results<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                </h2>
+            </div>
+            <div class="row g-4 fade-up">
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="how-step">
+                        <div class="how-step-num">01</div>
+                        <h4 class="how-step-title">Discover</h4>
+                        <p class="how-step-desc">Understand the problem, context, and what success looks like.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="how-step">
+                        <div class="how-step-num">02</div>
+                        <h4 class="how-step-title">Plan</h4>
+                        <p class="how-step-desc">Define architecture, scope, timeline, and milestones clearly.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="how-step">
+                        <div class="how-step-num">03</div>
+                        <h4 class="how-step-title">Design</h4>
+                        <p class="how-step-desc">Create user experiences that serve real people, not demos.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="how-step">
+                        <div class="how-step-num">04</div>
+                        <h4 class="how-step-title">Build</h4>
+                        <p class="how-step-desc">Develop with clean architecture, tested code, and clear documentation.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="how-step">
+                        <div class="how-step-num">05</div>
+                        <h4 class="how-step-title">Test</h4>
+                        <p class="how-step-desc">Validate quality, security, and performance before every release.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="how-step">
+                        <div class="how-step-num">06</div>
+                        <h4 class="how-step-title">Launch</h4>
+                        <p class="how-step-desc">Deploy with monitoring, CI/CD, and infrastructure ready for scale.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 stagger-child">
+                    <div class="how-step">
+                        <div class="how-step-num">07</div>
+                        <h4 class="how-step-title">Grow</h4>
+                        <p class="how-step-desc">Measure, optimize, and evolve as your business scales.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 d-flex align-items-center justify-content-center stagger-child">
+                    <a href="contact.html" class="btn-primary-custom text-center">
+                        Start Now
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 13 — WHY NEURONIV
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5" style="background-color: var(--color-bg-base);">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center mb-5">
+                <div class="col-lg-6 fade-up">
+                    <span class="badge-custom d-inline-block mb-4">Why NeuroNiv</span>
+                    <h2 class="text-white fs-1 fw-bold" style="letter-spacing: -0.03em; line-height: 1.12;">
+                        What Makes Us<br>
+                        <span class="hand-font">Different<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                    </h2>
+                    <p class="text-white-50 fs-5 mt-3" style="line-height: 1.7;">Most digital agencies do one thing. NeuroNiv combines AI engineering, software development, and digital marketing under one roof — so your technology and growth strategy work together from day one.</p>
+                </div>
+                <div class="col-lg-6 fade-up" style="transition-delay: 0.1s;">
+                    <div class="rounded-4 overflow-hidden" style="border: 1px solid rgba(255,255,255,0.1);">
+                        <img src="assets/images/senior-led-delivery.png" alt="Senior-led delivery and engineering excellence" class="img-fluid w-100" loading="lazy" decoding="async" style="display: block;">
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 fade-up">
+                <div class="col-md-6 col-lg-4 stagger-child">
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h4 class="principle-title">Engineering First</h4>
+                        <p class="principle-desc">We write clean, maintainable code with the technical depth to build systems that last — not quick solutions that create future problems.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 stagger-child">
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                        </div>
+                        <h4 class="principle-title">Business Focused</h4>
+                        <p class="principle-desc">Technology without business alignment is wasted effort. We tie every technical decision to real business outcomes and growth priorities.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 stagger-child">
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                        </div>
+                        <h4 class="principle-title">AI-Native</h4>
+                        <p class="principle-desc">We don't add AI as a feature — we design systems where intelligence is a core architectural element when it creates genuine value.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 stagger-child">
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <h4 class="principle-title">Built to Scale</h4>
+                        <p class="principle-desc">Systems designed for 100 users that break at 100,000 are expensive to fix. We architect for the growth you're planning to achieve.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 stagger-child">
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h4 class="principle-title">Human Centered</h4>
+                        <p class="principle-desc">The best technology is invisible — it makes tasks easier, faster, and more intuitive. We design around real users and real workflows.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 stagger-child">
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                        </div>
+                        <h4 class="principle-title">Long-Term Thinking</h4>
+                        <p class="principle-desc">We build for sustainability, not just the next demo. Our systems are designed to operate, evolve, and compound in value over time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 14 — CASE STUDIES
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5" style="background-color: var(--color-bg-mid);">
+        <div class="container py-5 fade-up">
+            <div class="text-center mb-5">
+                <span class="badge-custom d-inline-block mb-3">Project Outcomes</span>
+                <h2 class="text-white fs-1 fw-bold" style="letter-spacing: -0.03em;">Engineering trusted by teams<br>building the future.</h2>
+                <p class="text-white-50 small mx-auto mt-2" style="max-width: 600px;">Technical partnerships that convert ambitious roadmaps into reliable production infrastructure.</p>
+            </div>
+            <div class="row g-4">
+                <!-- Case Study 1 -->
+                <div class="col-md-4 stagger-child">
+                    <div class="glass-card dark h-100 p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-white bg-opacity-10 text-white rounded-pill px-3 py-1" style="font-size: 0.7rem;">HealthTech SaaS</span>
+                                <span style="color:#f59e0b; font-size: 0.9rem;">★★★★★</span>
+                            </div>
+                            <h4 class="text-white fs-6 fw-bold mb-2">Production AI Backend Architecture</h4>
+                            <p class="text-white-50 mb-4" style="font-size:0.9rem; line-height: 1.6;">
+                                &ldquo;NeuroNiv built our entire AI backend from scratch — secure RAG pipeline, fine-tuned domain models, and API gateway — in under 10 weeks, delivered exactly as specified.&rdquo;
+                            </p>
+                        </div>
+                        <div>
+                            <div class="d-flex gap-1 flex-wrap mb-3">
+                                <span class="badge bg-white bg-opacity-10 text-white-50 fw-normal" style="font-size: 0.65rem;">FastAPI</span>
+                                <span class="badge bg-white bg-opacity-10 text-white-50 fw-normal" style="font-size: 0.65rem;">RAG</span>
+                                <span class="badge bg-white bg-opacity-10 text-white-50 fw-normal" style="font-size: 0.65rem;">HIPAA-Ready</span>
+                                <span class="badge bg-white bg-opacity-10 text-white-50 fw-normal" style="font-size: 0.65rem;">AWS</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 pt-2 border-top border-white border-opacity-10">
+                                <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#e879f9,#8b5cf6);display:flex;align-items:center;justify-content:center;" class="text-white fw-bold small">JR</div>
+                                <div>
+                                    <div class="text-white fw-semibold small">James R.</div>
+                                    <div class="text-white-50" style="font-size:0.75rem;">CTO, Healthcare Platform</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Case Study 2 -->
+                <div class="col-md-4 stagger-child">
+                    <div class="glass-card dark h-100 p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-white bg-opacity-10 text-white rounded-pill px-3 py-1" style="font-size: 0.7rem;">E-Commerce Scale-up</span>
+                                <span style="color:#f59e0b; font-size: 0.9rem;">★★★★★</span>
+                            </div>
+                            <h4 class="text-white fs-6 fw-bold mb-2">AI Marketing & Social Growth Engine</h4>
+                            <p class="text-white-50 mb-4" style="font-size:0.9rem; line-height: 1.6;">
+                                &ldquo;Our marketing infrastructure now executes dynamic audience segmentation and omni-channel campaigns autonomously. The growth engine gave our marketing team complete operational leverage.&rdquo;
+                            </p>
+                        </div>
+                        <div>
+                            <div class="d-flex gap-1 flex-wrap mb-3">
+                                <span class="badge bg-white bg-opacity-10 text-white-50 fw-normal" style="font-size: 0.65rem;">Next.js</span>
+                                <span class="badge bg-white bg-opacity-10 text-white-50 fw-normal" style="font-size: 0.65rem;">HubSpot API</span>
+                                <span class="badge bg-white bg-opacity-10 text-white-50 fw-normal" style="font-size: 0.65rem;">OpenAI</span>
+                                <span class="badge bg-white bg-opacity-10 text-white-50 fw-normal" style="font-size: 0.65rem;">Meta Ads</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 pt-2 border-top border-white border-opacity-10">
+                                <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#e879f9,#8b5cf6);display:flex;align-items:center;justify-content:center;" class="text-white fw-bold small">SL</div>
+                                <div>
+                                    <div class="text-white fw-semibold small">Sophia L.</div>
+                                    <div class="text-white-50" style="font-size:0.75rem;">Head of Growth &amp; Strategy</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Case Study 3 -->
+                <div class="col-md-4 stagger-child">
+                    <div class="glass-card dark h-100 p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-white bg-opacity-10 text-white rounded-pill px-3 py-1" style="font-size: 0.7rem;">FinTech Platform</span>
+                                <span style="color:#f59e0b; font-size: 0.9rem;">★★★★★</span>
+                            </div>
+                            <h4 class="text-white fs-6 fw-bold mb-2">Cloud-Native Core &amp; Automated CI/CD</h4>
+                            <p class="text-white-50 mb-4" style="font-size:0.9rem; line-height: 1.6;">
+                                &ldquo;They modernized our legacy architecture into containerized microservices with automated CI/CD pipelines. We went from fortnightly deployments to multiple daily zero-downtime releases.&rdquo;
+                            </p>
+                        </div>
+                        <div>
+                            <div class="d-flex gap-1 flex-wrap mb-3">
+                                <span class="badge bg-white bg-opacity-10 text-white-50 fw-normal" style="font-size: 0.65rem;">Kubernetes</span>
+                                <span class="badge bg-white bg-opacity-10 text-white-50 fw-normal" style="font-size: 0.65rem;">Go</span>
+                                <span class="badge bg-white bg-opacity-10 text-white-50 fw-normal" style="font-size: 0.65rem;">Terraform</span>
+                                <span class="badge bg-white bg-opacity-10 text-white-50 fw-normal" style="font-size: 0.65rem;">GCP</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 pt-2 border-top border-white border-opacity-10">
+                                <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#e879f9,#8b5cf6);display:flex;align-items:center;justify-content:center;" class="text-white fw-bold small">AM</div>
+                                <div>
+                                    <div class="text-white fw-semibold small">Alex M.</div>
+                                    <div class="text-white-50" style="font-size:0.75rem;">VP Engineering, Financial Systems</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="work.html" class="btn-outline-custom">
+                    View All Projects
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 15 — INSIGHTS / KNOWLEDGE
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-up">
+                <span class="section-eyebrow dark">Knowledge & Insights</span>
+                <h2 class="text-dark fs-1 fw-bold mt-2" style="letter-spacing: -0.03em;">
+                    Thinking About<br>
+                    <span class="hand-font" style="color: var(--color-secondary);">Technology & Growth<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+                </h2>
+                <p class="text-muted mt-3 mx-auto" style="max-width: 560px;">Practical perspectives on AI, web engineering, automation, and digital marketing for businesses building in the current era.</p>
+            </div>
+            <div class="row g-4 fade-up">
+                <div class="col-md-4 stagger-child">
+                    <div class="insight-card">
+                        <div class="insight-card-img-wrap">
+                            <img src="assets/images/ai-models.png" alt="Building production AI systems" loading="lazy" decoding="async">
+                        </div>
+                        <div class="insight-card-body">
+                            <span class="insight-category">AI & Machine Learning</span>
+                            <h4 class="insight-title">Why Most AI Projects Fail Before They Ship</h4>
+                            <p class="insight-desc">The gap between an AI prototype and a production AI system is wider than most teams expect. Here's what separates the two.</p>
+                            <a href="contact.html" class="insight-read-more">
+                                Discuss With Us
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 stagger-child">
+                    <div class="insight-card">
+                        <div class="insight-card-img-wrap">
+                            <img src="assets/images/web-development.png" alt="Web application architecture guide" loading="lazy" decoding="async">
+                        </div>
+                        <div class="insight-card-body">
+                            <span class="insight-category">Web Development</span>
+                            <h4 class="insight-title">Architecture Decisions That Define How Well Your App Scales</h4>
+                            <p class="insight-desc">The choices made in the first sprint often determine whether your web application survives its second year. These are the ones that matter.</p>
+                            <a href="contact.html" class="insight-read-more">
+                                Discuss With Us
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 stagger-child">
+                    <div class="insight-card">
+                        <div class="insight-card-img-wrap">
+                            <img src="assets/images/ai-marketing.png" alt="Digital marketing and social media strategy" loading="lazy" decoding="async">
+                        </div>
+                        <div class="insight-card-body">
+                            <span class="insight-category">Digital Marketing</span>
+                            <h4 class="insight-title">How Social Media Strategy Drives B2B Growth in 2026</h4>
+                            <p class="insight-desc">Social media is no longer optional for B2B companies. Here's how to build a strategy that generates genuine pipeline — not just impressions.</p>
+                            <a href="contact.html" class="insight-read-more">
+                                Discuss With Us
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 16 — TECHNOLOGY ECOSYSTEM
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5" style="background-color: white; border-top: 1px solid #f1f5f9;">
+        <div class="container py-5 fade-up">
+            <div class="text-center mb-5">
+                <span class="section-eyebrow dark">Technology Ecosystem</span>
+                <h2 class="text-dark fs-2 fw-bold mt-2" style="letter-spacing: -0.025em;">Modern tools. Enterprise scale.</h2>
+            </div>
+            <div class="tech-grid mb-4">
+                <div class="tech-grid-item" style="color: #FF9900;">AWS</div>
+                <div class="tech-grid-item" style="color: #0089D6;">Azure</div>
+                <div class="tech-grid-item" style="color: #4285F4;">GCP</div>
+                <div class="tech-grid-item" style="color: #61DAFB;">React</div>
+                <div class="tech-grid-item" style="color: #000000;">Next.js</div>
+                <div class="tech-grid-item" style="color: #339933;">Node.js</div>
+                <div class="tech-grid-item" style="color: #3776AB;">Python</div>
+                <div class="tech-grid-item" style="color: #2496ED;">Docker</div>
+                <div class="tech-grid-item" style="color: #326CE5;">K8s</div>
+                <div class="tech-grid-item" style="color: #F05032;">Git</div>
+                <div class="tech-grid-item" style="color: #412991;">OpenAI</div>
+                <div class="tech-grid-item" style="color: #FF7000;">HubSpot</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 17 — FAQ
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5" style="background-color: var(--color-bg-mid);">
+        <div class="container py-5 fade-up" style="max-width: 800px;">
+            <div class="text-center mb-5">
+                <h2 class="text-white fs-2 fw-bold" style="letter-spacing: -0.025em;">Frequently Asked Questions</h2>
+                <p class="text-white-50 mt-2">Everything you need to know before starting a project with NeuroNiv.</p>
+            </div>
+
+            <div class="accordion accordion-custom" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            What services does NeuroNiv provide?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            NeuroNiv provides three core service areas: (1) AI & Machine Learning — building intelligent systems, LLM fine-tuning, RAG pipelines, computer vision, NLP, and AI automation; (2) Web Applications — custom web apps, SaaS platforms, business dashboards, APIs, and enterprise systems; and (3) Digital Marketing & Social Media — SEO, Google Ads, Meta Ads, content strategy, social media management, and performance analytics.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Do you build custom AI solutions?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes. We specialize in custom AI solutions — from fine-tuning language models on your specific data to building multi-agent systems, computer vision pipelines, NLP tools, and AI-powered automation. We focus on production-ready implementations, not just prototypes.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Can you integrate AI into our existing system?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Absolutely. We specialize in retrofitting AI capabilities into existing products — adding RAG pipelines, LLM-powered features, vector databases, and intelligent workflows to live codebases without disrupting your current operations.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            Can you build complete web applications?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes. We build end-to-end web applications — from UX design and frontend development through backend APIs, database architecture, integrations, and cloud deployment. We handle the full product lifecycle, not just individual layers.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                            Do you manage social media and digital marketing?
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes. We offer social media strategy, content planning, creative production, and campaign management alongside performance marketing — Google Ads, Meta Ads, SEO, and conversion optimization. Marketing is treated as seriously as engineering.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                            Do you work with startups?
+                        </button>
+                    </h2>
+                    <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes. We work with startups, growing businesses, and established enterprises. For startups, we're particularly experienced in building MVPs with the right architecture to scale — avoiding the technical debt that slows most early-stage products down.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                            What does a typical project timeline look like?
+                        </button>
+                    </h2>
+                    <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Discovery and architecture typically takes 1–2 weeks. A focused MVP build ranges from 6–12 weeks depending on complexity. Enterprise-scale platforms vary. Marketing campaigns can begin within 1–2 weeks. We provide a clear technical assessment and milestone plan before we start.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                            How do we start working together?
+                        </button>
+                    </h2>
+                    <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Start by telling us about your project — what you're building, what problems you're trying to solve, and your approximate timeline. Use the contact form or email us at <a href="mailto:info@neuroniv.com" style="color: var(--color-primary);">info@neuroniv.com</a>. We'll review your requirements and respond within 24 hours with our initial thoughts and next steps.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 18 — FINAL CTA
+         ══════════════════════════════════════════════════ -->
+    <section class="py-5 position-relative overflow-hidden" style="background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(30, 9, 51, 0.95) 0%, #070314 100%); border-top: 1px solid rgba(232,121,249,0.15);">
+        <canvas id="cta-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.6;" aria-hidden="true"></canvas>
+        <div class="container py-5 text-center fade-up position-relative" style="z-index: 2;">
+            <span class="badge-custom d-inline-block mb-3">Let's Build Together</span>
+            <h2 class="text-white fw-bold mb-4" style="font-size: clamp(2.4rem, 5.5vw, 3.8rem); letter-spacing: -0.035em; line-height: 1.1;">
+                Have an Idea?<br>
+                <span class="hand-font">Let's Build What Comes Next<svg class="hand-underline" viewBox="0 0 340 24"><path d="M4 14 C 60 6, 120 20, 180 11 S 300 6, 336 15"></path></svg></span>.
+            </h2>
+            <p class="text-white-50 fs-5 mb-5 mx-auto" style="max-width: 640px; line-height: 1.7;">
+                Tell us what you're trying to solve, build, or grow. We'll help turn the idea into a practical digital solution — whether that's AI, a web platform, automation, or a marketing system.
+            </p>
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                <a href="contact.html" class="btn-primary-custom">
+                    Start a Project
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                </a>
+                <a href="mailto:info@neuroniv.com" class="btn-outline-custom">
+                    Talk to Us
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+            </div>
+            <p class="text-white-50 mt-4" style="font-size: 0.85rem;">
+                📍 Rajkot, Gujarat, India &nbsp;·&nbsp; <a href="mailto:info@neuroniv.com" style="color: rgba(232,121,249,0.8);">info@neuroniv.com</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Interactive Particle Text -->
+    <section id="particle-text-section" style="background-color:var(--color-bg-base);position:relative;overflow:hidden;height:280px;display:flex;align-items:center;justify-content:center;border-top:1px solid rgba(255,255,255,0.05);">
+        <canvas id="particle-text-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+        <div id="particle-hint" style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.25);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;font-family:'Inter',sans-serif;pointer-events:none;transition:opacity 0.4s;white-space:nowrap;">Move your cursor over the text</div>
+    </section>
+    <style>#particle-text-section{cursor:none;}</style>
+    <script>
+    (function(){
+        const canvas=document.getElementById('particle-text-canvas');
+        const hint=document.getElementById('particle-hint');
+        if(!canvas)return;
+        const ctx=canvas.getContext('2d');
+        let W,H,dots=[],mouse={x:-9999,y:-9999};
+        const REPEL_R=90,REPEL_F=5.5,RETURN=0.09,FRIC=0.82,GAP=5,SZ=2.2;
+        function resize(){
+            const sec=document.getElementById('particle-text-section');
+            W=canvas.width=sec.offsetWidth;
+            H=canvas.height=sec.offsetHeight;
+            buildDots();
+        }
+        function buildDots(){
+            dots=[];
+            const off=document.createElement('canvas');
+            off.width=W;off.height=H;
+            const oc=off.getContext('2d');
+            const fs=Math.min(W/4.5,160);
+            oc.font = '800 ' + fs + 'px Inter, sans-serif';
+            oc.textAlign='center';oc.textBaseline='middle';
+            oc.fillStyle='#fff';
+            oc.fillText('NeuroNiv',W/2,H/2);
+            const d=oc.getImageData(0,0,W,H).data;
+            for(let y=0;y<H;y+=GAP)for(let x=0;x<W;x+=GAP){
+                if(d[(y*W+x)*4+3]>128)dots.push({ox:x,oy:y,x:x,y:y,vx:0,vy:0,
+                    color:Math.random()>.5?'#e879f9':'#8b5cf6',
+                    size:SZ+Math.random()*.8});
+            }
+        }
+        function animate(){
+            ctx.clearRect(0,0,W,H);
+            for(let i=0;i<dots.length;i++){
+                const d=dots[i],dx=d.x-mouse.x,dy=d.y-mouse.y;
+                const dist=Math.sqrt(dx*dx+dy*dy);
+                if(dist<REPEL_R){const f=(REPEL_R-dist)/REPEL_R,a=Math.atan2(dy,dx);
+                    d.vx+=Math.cos(a)*f*REPEL_F;d.vy+=Math.sin(a)*f*REPEL_F;}
+                d.vx+=(d.ox-d.x)*RETURN;d.vy+=(d.oy-d.y)*RETURN;
+                d.vx*=FRIC;d.vy*=FRIC;d.x+=d.vx;d.y+=d.vy;
+                const g=Math.min(Math.sqrt((d.x-d.ox)**2+(d.y-d.oy)**2)/15,1);
+                ctx.save();ctx.globalAlpha=.85+g*.15;
+                if(g>.04){ctx.shadowBlur=10+g*16;ctx.shadowColor=d.color;}
+                ctx.fillStyle=d.color;
+                ctx.beginPath();ctx.arc(d.x,d.y,d.size,0,Math.PI*2);ctx.fill();
+                ctx.restore();
+            }
+            requestAnimationFrame(animate);
+        }
+        const sec=document.getElementById('particle-text-section');
+        let hh=false;
+        sec.addEventListener('mousemove',function(e){
+            const r=canvas.getBoundingClientRect();
+            mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;
+            if(!hh){hint.style.opacity='0';hh=true;}
+        });
+        sec.addEventListener('mouseleave',function(){mouse.x=-9999;mouse.y=-9999;});
+        sec.addEventListener('touchmove',function(e){e.preventDefault();
+            const r=canvas.getBoundingClientRect(),t=e.touches[0];
+            mouse.x=t.clientX-r.left;mouse.y=t.clientY-r.top;
+        },{passive:false});
+        sec.addEventListener('touchend',function(){mouse.x=-9999;mouse.y=-9999;});
+        window.addEventListener('resize', resize);
+        document.fonts.ready.then(function() { resize(); animate(); });
+    })();
+    </script>
+
+    <!-- Footer -->
+    <footer class="py-5" style="background-color: var(--color-bg-base);">
+        <div class="container fade-up">
+            <div class="row g-4">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <a href="index.html" aria-label="NeuroNiv Home" class="text-decoration-none d-flex align-items-center gap-2 mb-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#e879f9"/>
+                            <path d="M2 17L12 22L22 17" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="text-white fw-bold fs-5" style="letter-spacing: -0.05em;">NeuroNiv</span>
+                    </a>
+                    <p class="text-white-50 small pe-md-4 mb-4">
+                        NeuroNiv is a Technology &amp; Digital Growth Studio. We build AI solutions, web applications, and marketing systems for businesses ready to scale.
+                    </p>
+                    <p class="text-white-50 small mb-0">
+                        📍 Rajkot, Gujarat, India<br>
+                        <a href="mailto:info@neuroniv.com" class="footer-link">info@neuroniv.com</a>
+                    </p>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1">
+                    <h5 class="text-white fs-6 mb-4 fw-bold">Company</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3">
+                        <li><a href="about.html" class="footer-link">About Us</a></li>
+                        <li><a href="services.html" class="footer-link">Services</a></li>
+                        <li><a href="careers.html" class="footer-link">Careers</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                        <li><a href="work.html" class="footer-link">Work</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h5 class="text-white fs-6 mb-4 fw-bold">Services</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3">
+                        <li><a href="#ai-models-section" class="footer-link">AI &amp; ML Solutions</a></li>
+                        <li><a href="#web-platform-section" class="footer-link">Web Applications</a></li>
+                        <li><a href="#ai-marketing-section" class="footer-link">Digital Marketing</a></li>
+                        <li><a href="services.html" class="footer-link">Social Media</a></li>
+                        <li><a href="services.html" class="footer-link">Automation</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mt-5 mt-lg-0">
+                    <h5 class="text-white fs-6 mb-4 fw-bold">Stay Updated</h5>
+                    <p class="text-white-50 small mb-3">Get the latest thinking on AI, web engineering, and digital growth.</p>
+                    <div class="d-flex">
+                        <input type="email" class="form-control bg-transparent text-white border-secondary rounded-start-pill" placeholder="Email address" style="border-color: rgba(255,255,255,0.2) !important;" aria-label="Email address">
+                        <button class="btn rounded-end-pill px-3 m-0 border-0" style="background-color: var(--color-primary); color: white;" aria-label="Subscribe">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center border-top mt-5 pt-4" style="border-color: rgba(255,255,255,0.1) !important;">
+                <div class="text-white-50 small mb-3 mb-md-0">
+                    &copy; 2026 NeuroNiv. All rights reserved.
+                </div>
+                <div class="d-flex gap-4">
+                    <a href="#" class="footer-link small">Privacy Policy</a>
+                    <a href="#" class="footer-link small">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+
+    <!-- CTA section subtle canvas animation -->
+    <script>
+    (function() {
+        const ctaCanvas = document.getElementById('cta-canvas');
+        if (!ctaCanvas) return;
+        const ctx = ctaCanvas.getContext('2d');
+        let w, h, dots = [];
+        function resize() {
+            w = ctaCanvas.width = ctaCanvas.offsetWidth;
+            h = ctaCanvas.height = ctaCanvas.offsetHeight;
+        }
+        function init() {
+            dots = [];
+            for (let i = 0; i < 60; i++) {
+                dots.push({
+                    x: Math.random() * w, y: Math.random() * h,
+                    r: Math.random() * 1.5 + 0.5,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    color: Math.random() > 0.5 ? '#e879f9' : '#8b5cf6'
+                });
+            }
+        }
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            dots.forEach(d => {
+                d.x += d.vx; d.y += d.vy;
+                if (d.x < 0 || d.x > w) d.vx *= -1;
+                if (d.y < 0 || d.y > h) d.vy *= -1;
+                ctx.beginPath();
+                ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+                ctx.fillStyle = d.color;
+                ctx.globalAlpha = 0.6;
+                ctx.fill();
+            });
+            // Draw thin lines between nearby dots
+            for (let i = 0; i < dots.length; i++) {
+                for (let j = i + 1; j < dots.length; j++) {
+                    const dx = dots[i].x - dots[j].x, dy = dots[i].y - dots[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(dots[i].x, dots[i].y);
+                        ctx.lineTo(dots[j].x, dots[j].y);
+                        ctx.strokeStyle = 'rgba(232,121,249,' + (0.12 * (1 - dist/100)) + ')';
+                        ctx.lineWidth = 0.8;
+                        ctx.globalAlpha = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+        window.addEventListener('resize', () => { resize(); init(); });
+        resize(); init(); draw();
+    })();
+    </script>
+</body>
+</html>
