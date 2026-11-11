@@ -799,21 +799,12 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         })
-        .then(res => res.json())
-        .then(data => {
-            if (data && data.success) {
+        .then(async res => {
+            const data = await res.json().catch(() => ({}));
+            if (res.ok && data && data.success) {
                 return { success: true };
-            } else {
-                throw new Error(data.error || 'Server rejected transmission.');
             }
-        })
-        .catch(err => {
-            // For local demonstration without SMTP credentials configured,
-            // fallback gracefully to success so user can experience full animation
-            if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-                return { success: true, localMock: true };
-            }
-            throw err;
+            throw new Error(data.error || 'Server could not deliver message. Status: ' + res.status);
         });
 
         // STAGE 3: Transmission animation along glowing path (550ms -> 1400ms)

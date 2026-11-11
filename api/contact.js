@@ -8,6 +8,12 @@
  * - Protects against spam, rate-limits, validates all fields, and returns generic error messages.
  */
 
+try {
+    require('dotenv').config();
+} catch (e) {
+    // dotenv optional in pre-configured environments
+}
+
 const nodemailer = require('nodemailer');
 
 // Simple in-memory rate limiting map (IP -> timestamp array)
