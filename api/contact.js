@@ -105,17 +105,17 @@ module.exports = async function handler(req, res) {
         }
 
         // 4. Validate Environment Variables for SMTP
-        const {
-            SMTP_HOST,
-            SMTP_PORT,
-            SMTP_USER,
-            SMTP_PASS,
-            SMTP_SECURE,
-            MAIL_TO
-        } = process.env;
+        const host = process.env.SMTP_HOST || 'smtp.gmail.com';
+        const user = process.env.SMTP_USER;
+        const pass = process.env.SMTP_PASS;
+        const port = parseInt(process.env.SMTP_PORT || '465', 10);
+        const secure = process.env.SMTP_SECURE !== undefined 
+            ? process.env.SMTP_SECURE === 'true' 
+            : port === 465;
+        const mailTo = process.env.MAIL_TO || user || 'info@neuroniv.com';
 
-        if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
-            console.error('Server Configuration Error: Missing SMTP environment variables.');
+        if (!user || !pass) {
+            console.error('Server Configuration Error: Missing SMTP_USER or SMTP_PASS environment variables in hosting environment (Vercel).');
             // Never reveal system setup details to the client
             return res.status(500).json({
                 success: false,
@@ -125,12 +125,12 @@ module.exports = async function handler(req, res) {
 
         // 5. Configure Transporter
         const transporter = nodemailer.createTransport({
-            host: SMTP_HOST,
-            port: parseInt(SMTP_PORT || '587', 10),
-            secure: SMTP_SECURE === 'true' || SMTP_PORT === '465',
+            host: host,
+            port: port,
+            secure: secure,
             auth: {
-                user: SMTP_USER,
-                pass: SMTP_PASS
+                user: user,
+                pass: pass
             }
         });
 
@@ -197,9 +197,9 @@ module.exports = async function handler(req, res) {
 
         // 7. Send Email
         const mailOptions = {
-            from: `"NeuroNiv Web Inquiry" <${SMTP_USER}>`,
+            from: `"NeuroNiv Web Inquiry" <${user}>`,
             replyTo: email,
-            to: MAIL_TO || 'votaradi213@rku.ac.in',///info@neuroniv.com
+            to: mailTo,
             subject: `New NeuroNiv Project Inquiry — ${service}`,
             text: `
 New NeuroNiv Project Inquiry
