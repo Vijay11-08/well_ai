@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cursorArrow.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
             cursorDot.style.transform = `translate3d(${mouseX - 3}px, ${mouseY - 3}px, 0)`;
+            kickRing();
         }, { passive: true });
 
         document.addEventListener('mouseleave', () => {
@@ -85,14 +86,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 250);
         });
 
-        // Smooth lagging ring with RAF
+        // Smooth lagging ring with RAF (idle-paused to eliminate CPU load when stationary)
+        let ringRaf = null;
         const updateRing = () => {
-            ringX += (mouseX - ringX) * 0.18;
-            ringY += (mouseY - ringY) * 0.18;
+            const dx = mouseX - ringX;
+            const dy = mouseY - ringY;
+            ringX += dx * 0.18;
+            ringY += dy * 0.18;
             cursorRing.style.transform = `translate3d(${ringX - 19}px, ${ringY - 19}px, 0)`;
-            requestAnimationFrame(updateRing);
+
+            if (Math.abs(dx) > 0.25 || Math.abs(dy) > 0.25) {
+                ringRaf = requestAnimationFrame(updateRing);
+            } else {
+                ringRaf = null;
+            }
         };
-        updateRing();
+        const kickRing = () => {
+            if (!ringRaf) {
+                ringRaf = requestAnimationFrame(updateRing);
+            }
+        };
     }
 
     /* ==========================================================================
@@ -225,9 +238,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let width = 0, height = 0;
         let nodes = [];
         let pulses = [];
-        const nodeCount = window.innerWidth < 768 ? 38 : 72;
-        const connectionDist = window.innerWidth < 768 ? 95 : 135;
+        const nodeCount = window.innerWidth < 768 ? 16 : 28;
+        const connectionDist = window.innerWidth < 768 ? 85 : 120;
         let mouseX = -9999, mouseY = -9999;
+        let heroInView = true;
 
         const resize = () => {
             width = canvas.width = heroSection.offsetWidth;
@@ -260,9 +274,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Periodic data pulse generation
+        // Periodic data pulse generation (throttled when out of view)
         setInterval(() => {
-            if (nodes.length < 2) return;
+            if (!heroInView || document.hidden || nodes.length < 2) return;
             const fromIdx = Math.floor(Math.random() * nodes.length);
             const a = nodes[fromIdx];
             for (let j = 0; j < nodes.length; j++) {
@@ -274,17 +288,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         from: a,
                         to: b,
                         progress: 0,
-                        speed: Math.random() * 0.025 + 0.015,
+                        speed: Math.random() * 0.02 + 0.015,
                         color: Math.random() > 0.5 ? '#e879f9' : '#38bdf8'
                     });
                     break;
                 }
             }
-            if (pulses.length > 25) pulses.shift();
-        }, 320);
+            if (pulses.length > 15) pulses.shift();
+        }, 450);
 
         let animationFrameId;
         const render = () => {
+            if (!heroInView) return;
             ctx.clearRect(0, 0, width, height);
 
             // Update & draw nodes
@@ -327,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Draw data pulses along synaptic filaments
+            // Draw data pulses along synaptic filaments (fast multi-pass glow without shadowBlur)
             for (let p = pulses.length - 1; p >= 0; p--) {
                 const pulse = pulses[p];
                 pulse.progress += pulse.speed;
@@ -337,13 +352,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 const px = pulse.from.x + (pulse.to.x - pulse.from.x) * pulse.progress;
                 const py = pulse.from.y + (pulse.to.y - pulse.from.y) * pulse.progress;
+
+                // Outer halo
+                ctx.beginPath();
+                ctx.arc(px, py, 4.5, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(232, 121, 249, 0.25)';
+                ctx.fill();
+
+                // Inner core
                 ctx.beginPath();
                 ctx.arc(px, py, 2.2, 0, Math.PI * 2);
                 ctx.fillStyle = pulse.color;
-                ctx.shadowBlur = 8;
-                ctx.shadowColor = pulse.color;
                 ctx.fill();
-                ctx.shadowBlur = 0;
             }
 
             animationFrameId = requestAnimationFrame(render);
@@ -352,7 +372,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Pause canvas when out of view
         const heroObserver = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
+            heroInView = entry.isIntersecting;
+            if (heroInView) {
                 if (!animationFrameId) render();
             } else {
                 cancelAnimationFrame(animationFrameId);
@@ -543,9 +564,9 @@ document.addEventListener('DOMContentLoaded', () => {
             mouseY = -9999;
         });
 
-        // Periodic light pulse along connected lines
+        // Periodic light pulse along connected lines (paused when tab hidden)
         setInterval(() => {
-            if (networkNodes.length < 2) return;
+            if (document.hidden || networkNodes.length < 2) return;
             const fromIdx = Math.floor(Math.random() * networkNodes.length);
             const a = networkNodes[fromIdx];
             for (let j = 0; j < networkNodes.length; j++) {
