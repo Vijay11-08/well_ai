@@ -488,8 +488,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Particle and node density adapted for mobile & page context
         const isMobile = window.innerWidth < 768;
-        const nodeDensity = isMobile ? (isServices ? 16 : 14) : (isServices ? 36 : (isAbout ? 24 : 28));
-        const particleDensity = isMobile ? 18 : (isAbout ? 25 : 40);
+        const nodeDensity = isMobile ? (isServices ? 12 : 10) : (isServices ? 22 : (isAbout ? 18 : 20));
+        const particleDensity = isMobile ? 14 : (isAbout ? 20 : 28);
         const connectionThreshold = isMobile ? 100 : (isServices ? 170 : 140);
 
         function resize() {
